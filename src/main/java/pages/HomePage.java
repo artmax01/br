@@ -9,7 +9,7 @@ public class HomePage extends BasePage{
 
     /** Common elements **/
 
-    //public PageHeader header = PageHeader.Instance;
+    public PageHeader header = PageHeader.Instance;
 
     /** UI Mappings */
 

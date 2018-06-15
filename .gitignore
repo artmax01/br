@@ -1,0 +1,13 @@
+*.html
+*.iml
+*.png
+.idea
+*.DS*
+target
+workspace.xml
+*.iws
+debugger.xml
+filetypes.xml
+ui.lnf.xml
+vcs.xml
+debug.log

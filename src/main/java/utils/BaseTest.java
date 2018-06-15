@@ -1,6 +1,7 @@
 package utils;
 
 import com.codeborne.selenide.Configuration;
+import org.monte.screenrecorder.ScreenRecorder;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterSuite;
@@ -15,6 +16,7 @@ import java.lang.reflect.Method;
 public class BaseTest{
 
     ReporterManager reporter;
+    public static ThreadLocal<ScreenRecorder> recorder = new ThreadLocal<ScreenRecorder>();
 
     @BeforeMethod
     public void beforeWithData(Object[] data, Method method) {
@@ -27,6 +29,8 @@ public class BaseTest{
         ProductSync.reporter = reporter;
 
         reporter.info("Starting driver");
+
+        ThreadLocal<ScreenRecorder> recorder = new ThreadLocal<ScreenRecorder>();
     }
 
     @BeforeClass

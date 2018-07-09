@@ -1,14 +1,10 @@
 package pages;
 
-import com.codeborne.selenide.CollectionCondition;
-import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.ElementsCollection;
-import com.codeborne.selenide.SelenideElement;
+import com.codeborne.selenide.*;
 import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.CollectionCondition.*;
-import static com.codeborne.selenide.Condition.have;
-import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.getElements;
 
@@ -29,32 +25,42 @@ public class MattressPlp extends BasePage{
             silverMattress = $(By.xpath(".//a[@class='btn btn-black' and contains(text(), 'Silver')]")),
 
             mattressTypeSlider = $(By.xpath(".//div[@id='TypeSlider']//div[@class='noUi-handle noUi-handle-lower']")),
-            typeStepAll = $(By.xpath(".//em[contains(text(), 'All')]")),
+            typeStepAll = mattressTypeSlider.$x(".//em[contains(text(), 'All')]"),
             typeStepPocketedCoil = $(By.xpath(".//div[@class='Step']//span[contains(text(), 'Pocketed Coil')]/..")),
             typeStepHybrid = $(By.xpath(".//div[@class='Step']//span[contains(text(), 'Hybrid')]/..")),
 
             mattressPriceSlider = $("#PriceSlider"),
-            priceStepAll = mattressPriceSlider.$x(".//em[contains(text(), 'All')]"),
-            priceStep_799_or_less = mattressPriceSlider.$x(".//div[@class='Step']//span[contains(text(), '799')]/.."),
-            priceStep_800_999 = mattressPriceSlider.$x(".//div[@class='Step']//span[contains(text(), '800')]/.."),
-            priceStep_1000_1999 = mattressPriceSlider.$x(".//div[@class='Step']//span[contains(text(), '1000')]/.."),
-            priceStep_2000_2999 = mattressPriceSlider.$x(".//div[@class='Step']//span[contains(text(), '2000')]/.."),
-            priceStep_3000_or_more = mattressPriceSlider.$x(".//div[@class='Step']//span[contains(text(), '3000')]").parent(),
+            priceStepAll = mattressPriceSlider.$("div:nth-child(1)"),
+            priceStep_799_or_less = $("#PriceSlider > div:nth-child(2)"),
+            priceStep_800_999 = mattressPriceSlider.$("div:nth-child(3)"),
+            priceStep_1000_1999 = mattressPriceSlider.$("div:nth-child(4)"),
+            priceStep_2000_2999 = mattressPriceSlider.$("div:nth-child(5)"),
+            priceStep_3000_or_more = mattressPriceSlider.$("div:nth-child(6)"),
 
             productsList = $(".product-item-info");
 
-    public static boolean verifyProductTypeFilter(){
-        int count = 0;
+    public static void SwitchToAllPrices(){
+        reporter.info("Moving mattress price slider to \"All\"");
+        mattressPriceSlider.dragAndDropTo(priceStepAll);
+        getElements(By.cssSelector(".product-item.col-lg-4"))
+                .shouldHave((CollectionCondition) size(38));
+    }
 
-        //Move slider to Pocketed Coil
-        SwitchToPocketedType();
 
-        //Move slider to Hybrid
-        SwitchToHybridType();
-
-        //Move slider to All
-        SwitchToAllTypes();
-        return true;
+    public static void MovePriceSliderTo$799_or_less(){
+        reporter.info("Moving mattress price slider to \"$799 or Less\"");
+        mattressPriceSlider.dragAndDropTo(priceStep_799_or_less);
+    }
+    public static boolean CheckPrice$799_or_less(){
+        reporter.info("Checking that products cost is less than $799");
+        ElementsCollection products = getElements(By.cssSelector(".product-item.col-lg-4"))
+                .exclude(attribute("style", "display: none;"));
+        for (SelenideElement product : products){
+            if (Integer.valueOf(product.$(".plp-price").getText().replace("$", "")) <= 799){
+                return true;
+            }
+        }
+        return false;
     }
 
     public static void SwitchToAllTypes(){

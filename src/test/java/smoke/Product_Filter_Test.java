@@ -4,11 +4,13 @@ import annotations.TestName;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.HomePage;
+import pages.MattressPlp;
 import pages.PageHeader;
 import utils.BaseTest;
 
 import static com.codeborne.selenide.Selenide.open;
-import static pages.MattressPlp.verifyProductTypeFilter;
+import static pages.MattressPlp.*;
+
 
 public class Product_Filter_Test extends BaseTest {
 
@@ -19,7 +21,11 @@ public class Product_Filter_Test extends BaseTest {
 
         open(HomePage.pageURL);
         PageHeader.openMattressesPlp();
-        Assert.assertTrue(verifyProductTypeFilter(), "Failed to sort products by type");
+
+        SwitchToAllTypes();
+        SwitchToPocketedType();
+        SwitchToHybridType();
+        SwitchToAllTypes();
     }
 
 

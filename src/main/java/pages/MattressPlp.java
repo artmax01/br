@@ -47,50 +47,49 @@ public class MattressPlp extends BasePage{
         int count = 0;
 
         //Move slider to Pocketed Coil
-        SwitchToPocketedType(count);
+        SwitchToPocketedType();
 
         //Move slider to Hybrid
-        SwitchToHybridType(count);
+        SwitchToHybridType();
 
         //Move slider to All
-        SwitchToAllTypes(count);
+        SwitchToAllTypes();
         return true;
     }
 
-    public static void SwitchToAllTypes(int count){
+    public static void SwitchToAllTypes(){
         reporter.info("Moving mattress type slider to \"All\"");
         mattressTypeSlider.dragAndDropTo(typeStepAll).shouldHave(Condition.attribute("aria-valuenow", "0.0"));
         //Get list of products
         getElements(By.cssSelector(".product-item.col-lg-4"))
             .exclude(Condition.attribute("style", "display: none;"))
             //Verify that all products are displayed
-            .shouldHave((CollectionCondition) size(38).and(sizeGreaterThan(count)));
+            .shouldHave((CollectionCondition) size(38));
     }
 
-    public static int SwitchToPocketedType(int count){
+    public static void SwitchToPocketedType(){
         reporter.info("Moving mattress type slider to \"Pocketed Coil\"");
         mattressTypeSlider.shouldHave(Condition.attribute("aria-valuenow", "0.0"))
                 .dragAndDropTo(typeStepPocketedCoil).shouldHave(Condition.attribute("aria-valuenow", "50.0"));
         //Get list of products
         ElementsCollection products = getElements(By.cssSelector(".product-item.col-lg-4"))
                 .exclude(Condition.attribute("style", "display: none;"));
-        count = products.size();
+
         //Verify that only selected products are displayed
         reporter.info("Checking that Hybrid mattresses are not displayed");
         for (SelenideElement product : products) {
             product.scrollIntoView(true);
             product.find("span.br-model-name").shouldNot(have(text("Hybrid")).because("Hybrid mattresses should NOT be displayed")); }
-            return count;
     }
 
-    public static void SwitchToHybridType(int count){
+    public static void SwitchToHybridType(){
         reporter.info("Moving mattress type slider to \"Hybrid\"");
         mattressTypeSlider.dragAndDropTo(typeStepHybrid).shouldHave(Condition.attribute("aria-valuenow", "100.0"));
         //Get list of products
         ElementsCollection products = getElements(By.cssSelector(".product-item.col-lg-4"))
                 .exclude(Condition.attribute("style", "display: none;"));
         //Verify that only selected products are displayed
-        products.shouldHave(sizeLessThan(count));
+        products.shouldHave(size(78));
         reporter.info("Checking that only Hybrid mattresses are displayed");
         for (SelenideElement product : products) {
             product.scrollIntoView(true);

@@ -26,13 +26,13 @@ public class PageHeader extends BasePage {
 
 
     /** Header Navigation methods **/
-    public static MattressPage openMattressByType(String type){
+    public static ProductPage openMattressByType(String type){
         reporter.info("Opening " + type + " matress page");
         products.hover();
         mattresses.hover();
         // Black, Silver, Platinum
         getElement(By.xpath("//A[@class='nav-link active d-flex flex-column justify-content-center'][text()='" + type + "']")).click();
-        return MattressPage.Instance;
+        return ProductPage.Instance;
     }
 
     public static MattressPlp openMattressesPlp(){
@@ -58,11 +58,11 @@ public class PageHeader extends BasePage {
         return AccessoryPlp.Instance;
     }
 
-    public static MattressInABox openMattressInABox(){
+    public static MattressInABoxPlp openMattressInABox(){
         reporter.info("Opening Mattress-In-A-Box Page");
         products.hover();
         mattresInBox.click();
-        return MattressInABox.Instance;
+        return MattressInABoxPlp.Instance;
     }
 
     public static AdjustableBasePlp openAdjustableBase(){

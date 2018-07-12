@@ -39,8 +39,8 @@ public class Header_Navigation_Test extends BaseTest{
 
         open(baseUrl);
         PageHeader.openMattressInABox();
-        Assert.assertTrue(title().equals(MattressInABox.pageTitle), "Page title is: " + title());
-        Assert.assertTrue(url().equals(MattressInABox.pageURL), "Page url is: " + url());
+        Assert.assertTrue(title().equals(MattressInABoxPlp.pageTitle), "Page title is: " + title());
+        Assert.assertTrue(url().equals(MattressInABoxPlp.pageURL), "Page url is: " + url());
 
         open(baseUrl);
         PageHeader.openAdjustableBase();

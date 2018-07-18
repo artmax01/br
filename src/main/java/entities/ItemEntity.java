@@ -9,6 +9,7 @@ package entities;
 
 public class ItemEntity extends BaseEntity {
     String title;
+    String name;
     float price;
     String size;
     String type;
@@ -18,6 +19,7 @@ public class ItemEntity extends BaseEntity {
     public String toString() {
         return "ItemEntity{" +
                 "title='" + title + '\'' +
+                ", option='" + name + '\'' +
                 ", price=" + price +
                 ", size='" + size + '\'' +
                 ", type='" + type + '\'' +
@@ -41,8 +43,9 @@ public class ItemEntity extends BaseEntity {
         this.type = type;
     }
 
-    public ItemEntity(String title, float price, int qty, String size, String type) {
+    public ItemEntity(String title, float price, int qty, String size, String type, String name) {
         this.title = title;
+        this.name = name;
         this.price = price;
         this.qty = qty;
         this.type = type;
@@ -52,13 +55,15 @@ public class ItemEntity extends BaseEntity {
 
     public ItemEntity(){};
 
-    public String getTitle() {
-        return title;
-    }
+    public String getTitle() { return title; }
 
     public void setTitle(String title) {
         this.title = title;
     }
+
+    public String getName() { return name; }
+
+    public void setName (String name) { this.name = name; }
 
     public float getPrice() {
         return price;
@@ -67,7 +72,6 @@ public class ItemEntity extends BaseEntity {
     public void setPrice(float price) {
         this.price = price;
     }
-
 
     public int getQty() {
         return qty;

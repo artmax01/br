@@ -3,6 +3,7 @@ package pages;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
+import entities.ItemEntity;
 import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.Condition.attribute;
@@ -37,7 +38,15 @@ public class MattressPlp extends BasePage{
             priceStep_2000_2999 = $x(".//div[@class='Step']/span[contains(text(), '$2000')]/.."),
             priceStep_3000_or_more = $x(".//div[@class='Step']/span[contains(text(), '$3000')]/.."),
 
-    productsList = $(".product-item-info");
+    product = $(".product-item-name");
+
+    public ProductPage OpenProductPage(ItemEntity item){
+        reporter.info("Opening product page: " + item.getName());
+        getElement(By.xpath(".//span[@class='br-model-name' and contains(text(), '" + item.getName() + "')]"))
+                .scrollIntoView(true)
+                .click();
+        return ProductPage.Instance;
+    }
 
     public static void SwitchToAllPrices(){
         reporter.info("Moving mattress price slider to \"All\"");
@@ -52,7 +61,6 @@ public class MattressPlp extends BasePage{
         }
         return false;
     }
-
 
     public static void MovePriceSliderTo$799_or_less(){
         reporter.info("Moving mattress price slider to \"$799 or Less\"");

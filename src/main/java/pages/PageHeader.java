@@ -32,14 +32,17 @@ public class PageHeader extends BasePage {
 
     /** Minicart elements **/
     minicartIcon = $("a.action.showcart"),
-    minicartItems = $("div.product-item-details"),
-    minicartItemName = $("strong.product-item-name"),
-    minicartQty = $x(".//input[@disabled='disabled']"),
-    minicartPrice = $("span.price"),
-    minicartItemDetails = $("dl.product.options.list span"),
     closeMinicart = $("button.action.close"),
-    deleteItemFromMinicartButton = $("a.action.delete"),
-    confirmItemDeletionButton = $("button.action-primary.action-accept");
+    confirmItemDeletionButton = $("button.action-primary.action-accept"),
+    checkoutButton = $("button.action.primary.checkout"),
+    viewCartButton = $("a.action.viewcart");
+    
+    By minicartItems = By.cssSelector("div.product-item-details");
+    By minicartItemName = By.cssSelector("strong.product-item-name");
+    By minicartQty = By.xpath(".//input[@disabled='disabled']");
+    By minicartPrice = By.cssSelector("span.price");
+    By minicartItemDetails = By.cssSelector("dl.product.options.list span");
+    By deleteItemFromMinicartButton = By.cssSelector("a.action.delete");
 
 
 
@@ -106,43 +109,67 @@ public class PageHeader extends BasePage {
     public static StoreLocatorPage openStoreLocator(){
         reporter.info("Opening Store Locator Page");
         findAStore.click();
+        click(findAStore);
         return StoreLocatorPage.Instance;
     }
 
     /** Minicart Methods */
 
-    public PageHeader openCart() {
+    public static void openCart() {
         reporter.info("Open Cart (Click on Show cart button)");
         minicartIcon.click();
-        return this;
+    }
+
+    public CartPage clickOnViewCartButton(){
+        reporter.info("Click on \"View Cart\" button");
+        openCart();
+        viewCartButton.click();
+        return CartPage.Instance;
     }
 
     public ArrayList<ItemEntity> getAllCartItems() {
         ArrayList<ItemEntity> result = new ArrayList<>();
 
-        reporter.info("Getting items in minicart");
         openCart();
+        reporter.info("Getting items in minicart");
 
-        ElementsCollection cartItemsList = getElements((By) minicartItems);
+        ElementsCollection cartItemsList = getElements(minicartItems);
         for (WebElement cartItem : cartItemsList) {
             ItemEntity currentItem = new ItemEntity();
 
-            currentItem.setTitle(cartItem.findElement((By) minicartItemName).getText());
-            currentItem.setQty(Integer.valueOf(cartItem.findElement((By) minicartQty).getAttribute("data-item-qty")));
-            currentItem.setPrice(Tools.convertStringPriceToFloat(cartItem.findElement((By) minicartPrice).getText()));
+            currentItem.setTitle(cartItem.findElement(minicartItemName).getText());
+            currentItem.setQty(Integer.valueOf(cartItem.findElement(minicartQty).getAttribute("data-item-qty")));
+            currentItem.setPrice(Tools.convertStringPriceToFloat(cartItem.findElement(minicartPrice).getText()));
             currentItem.setSize("");
-            currentItem.setType("");
-
-            List<WebElement> details = cartItem.findElements((By) minicartItemDetails);
-
-            for (WebElement elem : details) {
-                String value = elem.getText();
-                if (value.contains("(") && value.contains(")"))
-                    currentItem.setSize(value);
-                else
-                    currentItem.setType(value);
+            if (cartItem.findElement(minicartItemName).getText().contains("Pillow")){
+                if (cartItem.findElement(minicartItemName).getText().contains("Soft")){
+                    currentItem.setType("Soft Pillow Top");
+                }else{
+                    currentItem.setType("Medium Pillow Top");
+                }
+            } else{
+                if (cartItem.findElement(minicartItemName).getText().contains("Firm")){
+                    currentItem.setType("Firm");
+                }else if (cartItem.findElement(minicartItemName).getText().contains("Soft")){
+                    currentItem.setType("Soft");
+                }else{
+                    currentItem.setType("Medium");
+                }
             }
 
+            List<WebElement> details = cartItem.findElements(minicartItemDetails);
+
+            for (WebElement elem : details) {
+                currentItem.setSize(elem.getText());
+//                String value = elem.getText();
+//                reporter.info(elem.getText());
+//                if (value.contains("(") && value.contains(")"))
+//                    currentItem.setSize(value);
+//                else
+//                    currentItem.setType(value);
+            }
+
+            reporter.info("Order item: " + currentItem.toString());
             result.add(currentItem);
 
         }
@@ -150,31 +177,33 @@ public class PageHeader extends BasePage {
             reporter.info("No Cart items were found");
             //Assert.fail("No Cart items were found");
         }
-
         return result;
     }
 
     public boolean itemWasFoundInMiniCart(ItemEntity item) {
         ArrayList<ItemEntity> items = getAllCartItems();
         reporter.info("Expected item: " + item.toString());
+        closeMinicart.click();
         return items.stream()
                 .filter(cur -> item.getTitle().equals(cur.getTitle()))
                 .filter(cur -> item.getQty() == cur.getQty())
                 .filter(cur -> item.getPrice() == cur.getPrice())
                 .filter(cur -> cur.getType().contains(item.getType()))
-                .filter(cur -> cur.getSize().contains(item.getSize())).count() > 0;
+                .filter(cur -> cur.getSize().contains(item.getSize().toLowerCase()
+                        .replace(".", "")
+                        .replace(" ", ""))).count() > 0;
     }
 
     public void clickOnDeleteProductButton(ItemEntity item) {
         closeCart();
         openCart();
-        ElementsCollection cartItemsList = getElements((By) minicartItems);
+        ElementsCollection cartItemsList = getElements(minicartItems);
         for (int i = 0; i < cartItemsList.size(); i++) {
             WebElement cartItem = cartItemsList.get(i);
-            if (cartItem.findElement((By) minicartItemName).getText().contains(item.getTitle()) &&
-                    Tools.convertStringPriceToFloat(cartItem.findElement((By) minicartPrice).getText()) == item.getPrice() &&
-                    cartItem.findElement((By) minicartQty).getAttribute("data-item-qty").equals(String.valueOf(item.getQty()))) {
-                cartItem.findElement((By) deleteItemFromMinicartButton).click();
+            if (cartItem.findElement(minicartItemName).getText().contains(item.getTitle()) &&
+                    Tools.convertStringPriceToFloat(cartItem.findElement(minicartPrice).getText()) == item.getPrice() &&
+                    cartItem.findElement(minicartQty).getAttribute("data-item-qty").equals(String.valueOf(item.getQty()))) {
+                cartItem.findElement(deleteItemFromMinicartButton).click();
 
                 confirmItemDeletionButton.click();
             }
@@ -194,10 +223,10 @@ public class PageHeader extends BasePage {
         reporter.info("Counting sum of goods in the cart");
         openCart();
         int count = 0;
-        ElementsCollection cartItemsList = getElements((By) minicartItems);
+        ElementsCollection cartItemsList = getElements(minicartItems);
         for (int i = 0; i < cartItemsList.size(); i++) {
             WebElement cartItem = cartItemsList.get(i);
-            count = count + Integer.valueOf(cartItem.findElement((By) minicartQty).getAttribute("data-item-qty"));
+            count = count + Integer.valueOf(cartItem.findElement(minicartQty).getAttribute("data-item-qty"));
         }
         reporter.info("Sum of goods in cart equals to " + count);
         closeCart();

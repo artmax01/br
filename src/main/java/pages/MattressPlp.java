@@ -3,7 +3,6 @@ package pages;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
-import entities.ItemEntity;
 import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.Condition.attribute;
@@ -40,9 +39,11 @@ public class MattressPlp extends BasePage{
 
     product = $(".product-item-name");
 
-    public ProductPage OpenProductPage(ItemEntity item){
-        reporter.info("Opening product page: " + item.getName());
-        getElement(By.xpath(".//span[@class='br-model-name' and contains(text(), '" + item.getName() + "')]"))
+    public ProductPage OpenProductPage(String productLine){
+        reporter.info("Opening product page: " + productLine);
+        //getElement(By.xpath(".//span[@class='br-model-name' and contains(text(), '" + item.getName() + "')]/../.."))
+        getElement(By.xpath(".//div[contains(@class, 'product-item-info') and .//span[contains(text(), '" + productLine +"')]]"))
+                //getElement(By.xpath(".//div[@class='product-item-info'] and .//span[contains(text(), '" + pr + "')]"))
                 .scrollIntoView(true)
                 .click();
         return ProductPage.Instance;

@@ -1,15 +1,15 @@
 package pages;
 
 import com.codeborne.selenide.Selenide;
-import org.openqa.selenium.*;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.*;
+import com.codeborne.selenide.SelenideElement;
+import com.codeborne.selenide.WebDriverRunner;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import utils.FileIO;
 import utils.ReporterManager;
-import utils.Tools;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class BasePage {
 
@@ -23,5 +23,26 @@ public class BasePage {
     public void open() {
         reporter.info("Opening the page: " + "\"" + BASE_URL + pageURL + "\"");
         Selenide.open(BASE_URL + pageURL);
+    }
+
+    public static void click(SelenideElement element){
+        element.scrollIntoView(true)
+                .click();
+    }
+
+    public static void waitForPageToLoad() {
+        ExpectedCondition<Boolean> expectation = new
+                ExpectedCondition<Boolean>() {
+                    public Boolean apply(WebDriver driver) {
+                        return ((JavascriptExecutor) driver).executeScript("return document.readyState").toString().equals("complete");
+                    }
+                };
+        try {
+            Thread.sleep(1000);
+            WebDriverWait wait = new WebDriverWait(WebDriverRunner.getWebDriver(), 30);
+            wait.until(expectation);
+        } catch (Throwable error) {
+            Assert.fail("Timeout waiting for Page Load Request to complete.");
+        }
     }
 }

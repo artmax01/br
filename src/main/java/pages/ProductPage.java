@@ -28,15 +28,4 @@ public class ProductPage extends BasePage{
         return CartPage.Instance;
     }
 
-
-
-
-
-
-    public class Black{
-
-        public Black() { pageURL = "/black" ;}
-    }
-
-
 }

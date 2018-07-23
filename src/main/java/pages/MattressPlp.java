@@ -39,6 +39,8 @@ public class MattressPlp extends BasePage{
 
     product = $(".product-item-name");
 
+
+    //* Page methods *//
     public ProductPage OpenProductPage(String productLine){
         reporter.info("Opening product page: " + productLine);
         //getElement(By.xpath(".//span[@class='br-model-name' and contains(text(), '" + item.getName() + "')]/../.."))
@@ -67,6 +69,7 @@ public class MattressPlp extends BasePage{
         reporter.info("Moving mattress price slider to \"$799 or Less\"");
         mattressPriceSlider.dragAndDropTo(priceStep_799_or_less);
     }
+
     public static boolean CheckPrice$799_or_less(){
         reporter.info("Checking that products cost is less than $799");
         ElementsCollection products = getElements(By.cssSelector(".product-item.col-lg-4"))
@@ -211,4 +214,5 @@ public class MattressPlp extends BasePage{
         }
         return false;
     }
+
 }

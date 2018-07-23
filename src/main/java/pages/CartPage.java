@@ -50,7 +50,7 @@ public class CartPage extends BasePage{
                 .filter(cur -> item.getTitle() == null || item.getTitle().equals(cur.getTitle()))
                 .filter(cur -> item.getQty() == 0 || item.getQty() == cur.getQty())
                 .filter(cur -> item.getPrice() == 0 ||item.getPrice() == cur.getPrice())
-                .filter(cur -> item.getType() == null || cur.getType().contains(item.getType()))
+                //.filter(cur -> item.getType() == null || cur.getType().contains(item.getType()))
                 .filter(cur -> item.getSize() == null || cur.getSize().contains(item.getSize()))
                     .count() > 0;
     }
@@ -83,21 +83,21 @@ public class CartPage extends BasePage{
             currentItem.setQty(Integer.valueOf(orderItem.findElement(itemQty).getAttribute("value")));
             currentItem.setPrice(Tools.convertStringPriceToFloat(orderItem.findElement(itemPrice).getText()));
             currentItem.setSize("");
-            if (orderItem.findElement(cartItemName).getText().contains("Pillow")){
-                if (orderItem.findElement(cartItemName).getText().contains("Soft")){
-                    currentItem.setType("Soft Pillow Top");
-                }else{
-                    currentItem.setType("Medium Pillow Top");
-                }
-            } else{
-                if (orderItem.findElement(cartItemName).getText().contains("Firm")){
-                    currentItem.setType("Firm");
-                }else if (orderItem.findElement(cartItemName).getText().contains("Soft")){
-                    currentItem.setType("Soft");
-                }else{
-                    currentItem.setType("Medium");
-                }
-            }
+//            if (orderItem.findElement(cartItemName).getText().contains("Pillow")){
+//                if (orderItem.findElement(cartItemName).getText().contains("Soft")){
+//                    currentItem.setType("Soft Pillow Top");
+//                }else{
+//                    currentItem.setType("Medium Pillow Top");
+//                }
+//            } else{
+//                if (orderItem.findElement(cartItemName).getText().contains("Firm")){
+//                    currentItem.setType("Firm");
+//                }else if (orderItem.findElement(cartItemName).getText().contains("Soft")){
+//                    currentItem.setType("Soft");
+//                }else{
+//                    currentItem.setType("Medium");
+//                }
+//            }
 
             List<WebElement> details = orderItem.findElements(itemDetails);
 

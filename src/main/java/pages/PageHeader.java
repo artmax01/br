@@ -31,6 +31,7 @@ public class PageHeader extends BasePage {
     findAStore = $("i.nav-link-icon").parent(),
 
     /** Minicart elements **/
+
     minicartIcon = $("a.action.showcart"),
     closeMinicart = $("button.action.close"),
     confirmItemDeletionButton = $("button.action-primary.action-accept"),
@@ -44,10 +45,8 @@ public class PageHeader extends BasePage {
     By minicartItemDetails = By.cssSelector("dl.product.options.list span");
     By deleteItemFromMinicartButton = By.cssSelector("a.action.delete");
 
-
-
-
     /** Header Navigation methods **/
+
     public static MattressPlp openMattressByType(String type){
         reporter.info("Opening " + type + " matress page");
         products.hover();
@@ -141,21 +140,21 @@ public class PageHeader extends BasePage {
             currentItem.setQty(Integer.valueOf(cartItem.findElement(minicartQty).getAttribute("data-item-qty")));
             currentItem.setPrice(Tools.convertStringPriceToFloat(cartItem.findElement(minicartPrice).getText()));
             currentItem.setSize("");
-            if (cartItem.findElement(minicartItemName).getText().contains("Pillow")){
-                if (cartItem.findElement(minicartItemName).getText().contains("Soft")){
-                    currentItem.setType("Soft Pillow Top");
-                }else{
-                    currentItem.setType("Medium Pillow Top");
-                }
-            } else{
-                if (cartItem.findElement(minicartItemName).getText().contains("Firm")){
-                    currentItem.setType("Firm");
-                }else if (cartItem.findElement(minicartItemName).getText().contains("Soft")){
-                    currentItem.setType("Soft");
-                }else{
-                    currentItem.setType("Medium");
-                }
-            }
+//            if (cartItem.findElement(minicartItemName).getText().contains("Pillow")){
+//                if (cartItem.findElement(minicartItemName).getText().contains("Soft")){
+//                    currentItem.setType("Soft Pillow Top");
+//                }else{
+//                    currentItem.setType("Medium Pillow Top");
+//                }
+//            } else{
+//                if (cartItem.findElement(minicartItemName).getText().contains("Firm")){
+//                    currentItem.setType("Firm");
+//                }else if (cartItem.findElement(minicartItemName).getText().contains("Soft")){
+//                    currentItem.setType("Soft");
+//                }else{
+//                    currentItem.setType("Medium");
+//                }
+//            }
 
             List<WebElement> details = cartItem.findElements(minicartItemDetails);
 
@@ -168,10 +167,8 @@ public class PageHeader extends BasePage {
 //                else
 //                    currentItem.setType(value);
             }
-
             reporter.info("Order item: " + currentItem.toString());
             result.add(currentItem);
-
         }
         if (cartItemsList.size() == 0) {
             reporter.info("No Cart items were found");
@@ -188,7 +185,7 @@ public class PageHeader extends BasePage {
                 .filter(cur -> item.getTitle().equals(cur.getTitle()))
                 .filter(cur -> item.getQty() == cur.getQty())
                 .filter(cur -> item.getPrice() == cur.getPrice())
-                .filter(cur -> cur.getType().contains(item.getType()))
+                //.filter(cur -> cur.getType().contains(item.getType()))
                 .filter(cur -> cur.getSize().contains(item.getSize().toLowerCase()
                         .replace(".", "")
                         .replace(" ", ""))).count() > 0;

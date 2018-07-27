@@ -1,5 +1,6 @@
 package pages;
 
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebDriverRunner;
@@ -10,6 +11,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import utils.FileIO;
 import utils.ReporterManager;
+
+import static com.codeborne.selenide.Selenide.$;
 
 public class BasePage {
 
@@ -23,6 +26,7 @@ public class BasePage {
     public void open() {
         reporter.info("Opening the page: " + "\"" + BASE_URL + pageURL + "\"");
         Selenide.open(BASE_URL + pageURL);
+        closeWelcomeMessage();
     }
 
     public static void click(SelenideElement element){
@@ -45,4 +49,10 @@ public class BasePage {
             Assert.fail("Timeout waiting for Page Load Request to complete.");
         }
     }
+
+    public void closeWelcomeMessage(){
+        reporter.info("Closing welcome message");
+        $(".close-button").shouldBe(Condition.visible).click();
+    }
+
 }

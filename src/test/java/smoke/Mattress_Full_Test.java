@@ -30,7 +30,7 @@ public class Mattress_Full_Test extends BaseTest {
 
         ItemEntity item = EntitiesFactory.getItem(FileIO.getDataFile("mattress/black_calista.json"));
 
-        open(baseUrl);
+        home.open();
         header.openMattressByType("Black")
                 .OpenProductPage("CALISTA");
 
@@ -51,7 +51,7 @@ public class Mattress_Full_Test extends BaseTest {
 
         ItemEntity item = EntitiesFactory.getItem(FileIO.getDataFile("mattress/black_katarina.json"));
 
-        open(baseUrl);
+        home.open();
         header.openMattressByType("Black")
                 .OpenProductPage("KATARINA");
 
@@ -71,7 +71,7 @@ public class Mattress_Full_Test extends BaseTest {
 
         ItemEntity item = EntitiesFactory.getItem(FileIO.getDataFile("mattress/platinum_spring_grove.json"));
 
-        open(baseUrl);
+        home.open();
         header.openMattressByType("Platinum")
                 .OpenProductPage("SPRING GROVE");
 
@@ -91,7 +91,7 @@ public class Mattress_Full_Test extends BaseTest {
 
         ItemEntity item = EntitiesFactory.getItem(FileIO.getDataFile("mattress/platinum_crestridge.json"));
 
-        open(baseUrl);
+        home.open();
         header.openMattressByType("Platinum")
                 .OpenProductPage("CRESTRIDGE");
 
@@ -111,7 +111,7 @@ public class Mattress_Full_Test extends BaseTest {
 
         ItemEntity item = EntitiesFactory.getItem(FileIO.getDataFile("mattress/platinum_atlas_cove.json"));
 
-        open(baseUrl);
+        home.open();
         header.openMattressByType("Platinum")
                 .OpenProductPage("ATLAS COVE");
 
@@ -131,7 +131,7 @@ public class Mattress_Full_Test extends BaseTest {
 
         ItemEntity item = EntitiesFactory.getItem(FileIO.getDataFile("mattress/silver_open_seas.json"));
 
-        open(baseUrl);
+        home.open();
         header.openMattressByType("Silver")
                 .OpenProductPage("OPEN SEAS");
 
@@ -151,7 +151,7 @@ public class Mattress_Full_Test extends BaseTest {
 
         ItemEntity item = EntitiesFactory.getItem(FileIO.getDataFile("mattress/silver_beachwood.json"));
 
-        open(baseUrl);
+        home.open();
         header.openMattressByType("Silver")
                 .OpenProductPage("BEACHWOOD");
 
@@ -171,7 +171,7 @@ public class Mattress_Full_Test extends BaseTest {
 
         ItemEntity item = EntitiesFactory.getItem(FileIO.getDataFile("mattress/silver_austin_reef.json"));
 
-        open(baseUrl);
+        home.open();
         header.openMattressByType("Silver")
                 .OpenProductPage("AUSTIN REEF");
 

@@ -7,18 +7,19 @@ import pages.HomePage;
 import pages.PageHeader;
 import utils.BaseTest;
 
-import static com.codeborne.selenide.Selenide.open;
 import static pages.MattressPlp.*;
 
 
 public class Product_Filter_Test extends BaseTest {
 
+    HomePage home = HomePage.Instance;
+
 //    @Test
 //    @TestName(name = "Mattress type filter test")
 //
-//    public static void VerifyMattressTypeFilter(){
+//    public void VerifyMattressTypeFilter(){
 //
-//        open(HomePage.pageURL);
+//        home.open();
 //        PageHeader.openMattressesPlp();
 //
 //        SwitchToAllTypes();
@@ -38,8 +39,8 @@ public class Product_Filter_Test extends BaseTest {
     @Test
     @TestName(name = "Mattress price filter test")
 
-    public static void VerifyMattressPriceFilter(){
-        open(HomePage.pageURL);
+    public void VerifyMattressPriceFilter(){
+        home.open();
         PageHeader.openMattressesPlp();
 
         SwitchToAllPrices();

@@ -17,8 +17,9 @@ public class Header_Navigation_Test extends BaseTest{
     @TestName(name="Header Navigation Test")
 
     public static void HeaderNavigationTest(){
+        HomePage home = HomePage.Instance;
 
-        open(baseUrl);
+        home.open();
         PageHeader.openMattressesPlp();
         Assert.assertTrue(title().equals(MattressPlp.pageTitle), "Page title is: " + title());
 

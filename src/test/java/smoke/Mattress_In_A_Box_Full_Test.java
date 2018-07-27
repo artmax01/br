@@ -24,19 +24,18 @@ public class Mattress_In_A_Box_Full_Test extends BaseTest {
     @TestName(name = "Mattress in a Box full test")
     public void Mattress_in_a_box() throws Exception{
 
-             ItemEntity item = EntitiesFactory.getItem(FileIO.getDataFile("mattress/mattress_in_a_box.json"));
+            ItemEntity item = EntitiesFactory.getItem(FileIO.getDataFile("mattress/mattress_in_a_box.json"));
 
-             open(baseUrl);
+            home.open();
             header.openMattressInABox()
                     .OpenMattressInABoxPdp();
 
-             product.SelectSize(item.getSize());
-             product.clickAddToCart();
-             Assert.assertTrue(cart.itemDisplayedOnViewCartPage(item), "Item was not displayed on cart page");
+            product.SelectSize(item.getSize());
+            product.clickAddToCart();
+            Assert.assertTrue(cart.itemDisplayedOnViewCartPage(item), "Item was not displayed on cart page");
 
-             open(baseUrl);
-             Assert.assertTrue(home.header.itemWasFoundInMiniCart(item), "Item was not found in minicart");
-
+            open(baseUrl);
+            Assert.assertTrue(home.header.itemWasFoundInMiniCart(item), "Item was not found in minicart");
      }
 
 

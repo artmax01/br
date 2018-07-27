@@ -4,6 +4,7 @@ import com.codeborne.selenide.ElementsCollection;
 import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.Condition.cssClass;
+import static com.codeborne.selenide.Selenide.getElement;
 import static com.codeborne.selenide.Selenide.getElements;
 
 public class MattressInABoxPlp extends BasePage{
@@ -26,6 +27,17 @@ public class MattressInABoxPlp extends BasePage{
         return false;
     }
 
+    public MattressInABoxPdp OpenMattressInABoxPdp(){
+
+        reporter.info("Opening MIAB page: ");
+
+        getElement(By.xpath(".//div[contains(@class, 'product-item-info') and .//span[contains(text(), 'MATTRESS-IN-A-BOX')]]"))
+                .scrollIntoView(true)
+                .click();
+
+
+        return MattressInABoxPdp.Instance;
+    }
 
 }
 

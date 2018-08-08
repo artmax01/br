@@ -44,6 +44,7 @@ public class CartPage extends BasePage{
     By itemDetails = By.cssSelector("dd");
 
     public boolean itemDisplayedOnViewCartPage(ItemEntity item) {
+        waitForPageToLoad();
         ArrayList<ItemEntity> items = getAllViewCartPageItems();
         reporter.info("Expected item: " + item.toString());
         return items.stream()

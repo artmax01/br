@@ -1,0 +1,86 @@
+package pages;
+
+import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.SelenideElement;
+import entities.ItemEntity;
+import org.openqa.selenium.By;
+import utils.FileIO;
+
+import static com.codeborne.selenide.Selenide.$;
+
+public class AdminPage extends BasePage {
+
+    private static AdminPage instance;
+    public static AdminPage Instance = (instance != null) ? instance : new AdminPage();
+
+    public AdminPage(){
+        pageURL = FileIO.getConfigProperty("adminUrl");
+        pageTitle = "Dashboard / Magento Admin | Tomorrow Sleep";
+    }
+
+    /** UI Mappings **/
+
+    public static SelenideElement
+
+    salesTab = $(By.xpath(".//a//span[text()='Sales']")),
+    ordersLink = $(By.xpath(".//span[text()='Orders'][1]")),
+    searchBox = $("#fulltext"),
+    orderRow = $("tr.data-row"),
+    viewLink = $(By.xpath(".//a[text()='View']")),
+
+    orderTitle = $(".product-title"),
+    orderPrice = $("span.price"),
+    cancelButton = $(By.xpath(".//span[text()='Cancel']")),
+    submitCancelationButton = $(By.xpath(".//span[text()='OK'][2]")),
+    successMessage = $(By.xpath(".//div[@data-ui-id='messages-message-success']"));
+
+
+    /** Page Methods **/
+
+    public AdminPage navigateToOrders(){
+        reporter.info("Opening Orders page in Admin panel");
+        salesTab.click();
+        ordersLink.click();
+        return this;
+    }
+    public boolean orderIsDisplayedOnOrdersPage(String orderNumber){
+        reporter.info("Verifying that order is displayed on Orders page");
+        searchBox.sendKeys(orderNumber);
+        searchBox.submit();
+
+        if (orderRow.isDisplayed() && orderRow.has(Condition.text(orderNumber))){
+            return true;
+        }
+        return false;
+    }
+
+    public AdminPage viewOrderDetails(){
+        reporter.info("Opening products details page");
+        viewLink.click();
+        waitForPageToLoad();
+        return this;
+    }
+
+    public boolean orderContainsProduct(ItemEntity item){
+        reporter.info("Checking that product is displayed on order details page");
+        if (orderTitle.has(Condition.text(item.getTitle()))){
+            return true;
+        }
+        return false;
+    }
+
+    public AdminPage clickOnCancelButton(){
+        reporter.info("Cancelling order");
+        cancelButton.click();
+        submitCancelationButton.click();
+        return this;
+    }
+
+    public boolean orderHasBeenCanceled(){
+        if (successMessage.isDisplayed() && successMessage.getText().contains("You canceled the order.")){
+            return true;
+        }
+        return false;
+    }
+
+}

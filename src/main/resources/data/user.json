@@ -1,0 +1,9 @@
+{
+  "firstname" : "Beatyrest",
+  "lastname" : "Autotest",
+  "street" : "100 West st.",
+  "city" : "New York",
+  "phone" : "2122212232",
+  "zipcode" : "10036",
+  "state" : "New York"
+}

@@ -11,7 +11,7 @@ public class ItemEntity extends BaseEntity {
     String title;
     float price;
     String size;
-    String type;
+    //String type;
     int qty;
 
     @Override
@@ -20,7 +20,7 @@ public class ItemEntity extends BaseEntity {
                 "title='" + title + '\'' +
                 ", price=" + price +
                 ", size='" + size + '\'' +
-                ", type='" + type + '\'' +
+                //", type='" + type + '\'' +
                 ", qty=" + qty +
                 '}';
     }
@@ -33,19 +33,17 @@ public class ItemEntity extends BaseEntity {
         this.size = size;
     }
 
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
+//    public String getType() { return type; }
+//
+//    public void setType(String type) {
+//        this.type = type;
+//    }
 
     public ItemEntity(String title, float price, int qty, String size, String type) {
         this.title = title;
         this.price = price;
         this.qty = qty;
-        this.type = type;
+        //this.type = type;
         this.size = size;
 
     }

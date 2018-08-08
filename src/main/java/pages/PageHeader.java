@@ -126,6 +126,13 @@ public class PageHeader extends BasePage {
         return CartPage.Instance;
     }
 
+    public CheckoutPage clickOnViewCheckoutPage(){
+        openCart();
+        reporter.info("Click on \"Checkout\" button in minicart");
+        checkoutButton.click();
+        return CheckoutPage.Instance;
+    }
+
     public ArrayList<ItemEntity> getAllCartItems() {
         ArrayList<ItemEntity> result = new ArrayList<>();
 

@@ -1,6 +1,9 @@
 package pages;
 
-import com.codeborne.selenide.*;
+import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.Selenide;
+import com.codeborne.selenide.WebDriverRunner;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -28,6 +31,23 @@ public class BasePage {
         reporter.info("Opening the page: " + "\"" + BASE_URL + pageURL + "\"");
         Selenide.open(BASE_URL + pageURL);
         closeWelcomeMessage();
+    }
+
+    public static void hoverAndClick(WebElement a, WebElement b, WebElement c)
+    {
+        try
+        {
+            String mouseOverScript = "if(document.createEvent){var evObj = document.createEvent('MouseEvents');evObj.initEvent('mouseover',true, false); arguments[0].dispatchEvent(evObj);} else if(document.createEventObject) { arguments[0].fireEvent('onmouseover');}";
+            ((JavascriptExecutor) WebDriverRunner.getWebDriver()).executeScript(mouseOverScript,a);
+            Thread.sleep(1000);
+            ((JavascriptExecutor) WebDriverRunner.getWebDriver()).executeScript(mouseOverScript,b);
+            Thread.sleep(1000);
+            ((JavascriptExecutor)WebDriverRunner.getWebDriver()).executeScript("arguments[0].click();",c);
+
+
+        } catch (Exception e) {
+            // TODO: handle exception
+        }
     }
 
     public static AdminPage openAdminPage(){

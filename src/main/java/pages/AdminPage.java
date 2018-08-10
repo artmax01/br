@@ -39,8 +39,8 @@ public class AdminPage extends BasePage {
 
     public AdminPage doLogin(){
         reporter.info("Logging into admin panel");
-        $("#username").sendKeys("***"); //todo
-        $("#login").sendKeys("***");
+        $("#username").sendKeys("auto.qa");
+        $("#login").sendKeys("Tomorrow101");
         $(".action-login.action-primary").click();
         waitForPageToLoad();
         return this;

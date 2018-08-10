@@ -22,15 +22,15 @@ public class PageHeader extends BasePage {
 
     public static SelenideElement
 
-    products = $(By.xpath("(//A[@class='nav-link'])[1]")),
-    mattresses = $(By.xpath("//A[@class='nav-link active d-flex flex-column justify-content-center'][text()='Mattresses']")),
-    mattresInBox = $(By.xpath("//A[@class='nav-link active d-flex flex-column justify-content-center'][text()='Mattress-in-a-box']")),
-    bases = $(By.xpath("//A[@class='nav-link active d-flex flex-column justify-content-center'][text()='Bases']")),
-    adjustableBase = $(By.xpath("//A[@class='nav-link active d-flex flex-column justify-content-center'][text()='Adjustable Bases']")),
-    boxSpring = $(By.xpath("//A[@class='nav-link active d-flex flex-column justify-content-center'][text()='Box Springs']")),
-    accessories = $(By.xpath("//A[@class='nav-link active d-flex flex-column justify-content-center'][text()='Accessories']")),
-    promotions = $(By.xpath("//a[@class='nav-link'][text()='Promotions']")),
-    blog = $(By.xpath("//a[@class='nav-link'][text()='Blog']")),
+    products = $(By.xpath("(.//A[@class='nav-link'])[1]")),
+    mattresses = $(By.xpath(".//A[@class='nav-link active d-flex flex-column justify-content-center'][text()='Mattresses']")),
+    mattresInBox = $(By.xpath(".//A[@class='nav-link active d-flex flex-column justify-content-center'][text()='Mattress-in-a-box']")),
+    bases = $(By.xpath(".//A[@class='nav-link active d-flex flex-column justify-content-center'][text()='Bases']")),
+    adjustableBase = $(By.xpath(".//A[@class='nav-link active d-flex flex-column justify-content-center'][text()='Adjustable Bases']")),
+    boxSpring = $(By.xpath(".//A[@class='nav-link active d-flex flex-column justify-content-center'][text()='Box Springs']")),
+    accessories = $(By.xpath(".//A[@class='nav-link active d-flex flex-column justify-content-center'][text()='Accessories']")),
+    promotions = $(By.xpath(".//a[@class='nav-link'][text()='Promotions']")),
+    blog = $(By.xpath(".//a[@class='nav-link'][text()='Blog']")),
     findAStore = $("i.nav-link-icon").parent(),
 
     /** Minicart elements **/
@@ -99,9 +99,10 @@ public class PageHeader extends BasePage {
 
     public static AdjustableBasePlp openBoxSpring(){
         reporter.info("Opening Box Springs Page");
-        products.hover();
-        bases.hover();
-        boxSpring.click();
+//        products.hover();
+//        bases.hover();
+//        boxSpring.click();
+        hoverAndClick(products, bases, boxSpring);
         return AdjustableBasePlp.Instance;
     }
 

@@ -15,7 +15,7 @@ public class MattressPlp extends BasePage{
 
     public MattressPlp(){
     pageURL = "/mattresses";
-    pageTitle = "Beautyrest Mattresses | Get Quality Sleep | Beautyrest";}
+    pageTitle = "BR Mattresses";}
 
 
     /* UI elements */

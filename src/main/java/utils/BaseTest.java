@@ -38,8 +38,8 @@ public class BaseTest{
 
         //Selenide configuration based on .properties file
 
-        Configuration.timeout = 10000;
-        Configuration.collectionsTimeout = 20000;
+        Configuration.timeout = 20000;
+        Configuration.collectionsTimeout = 30000;
         Configuration.browser = FileIO.getConfigProperty("Driver");
         Configuration.baseUrl = FileIO.getConfigProperty("baseUrl");
         Configuration.captureJavascriptErrors = true;

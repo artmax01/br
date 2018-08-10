@@ -31,11 +31,20 @@ public class AdminPage extends BasePage {
     orderTitle = $(".product-title"),
     orderPrice = $("span.price"),
     cancelButton = $(By.xpath(".//span[text()='Cancel']")),
-    submitCancelationButton = $(By.xpath(".//span[text()='OK'][2]")),
+    submitCancelationButton = $(".action-primary.action-accept"),
     successMessage = $(By.xpath(".//div[@data-ui-id='messages-message-success']"));
 
 
     /** Page Methods **/
+
+    public AdminPage doLogin(){
+        reporter.info("Logging into admin panel");
+        $("#username").sendKeys("***"); //todo
+        $("#login").sendKeys("***");
+        $(".action-login.action-primary").click();
+        waitForPageToLoad();
+        return this;
+    }
 
     public AdminPage navigateToOrders(){
         reporter.info("Opening Orders page in Admin panel");
@@ -44,9 +53,12 @@ public class AdminPage extends BasePage {
         return this;
     }
     public boolean orderIsDisplayedOnOrdersPage(String orderNumber){
+        waitForPageToLoad();
         reporter.info("Verifying that order is displayed on Orders page");
+        searchBox.clear();
         searchBox.sendKeys(orderNumber);
-        searchBox.submit();
+        searchBox.pressEnter();
+        waitForPageToLoad();
 
         if (orderRow.isDisplayed() && orderRow.has(Condition.text(orderNumber))){
             return true;

@@ -32,13 +32,8 @@ public class BasePage {
 
     public static AdminPage openAdminPage(){
         reporter.info("Opening Admin page");
-        Selenide.open("https://staging.tomorrowsleep.com/office45w45/");
+        Selenide.open("https://bettersleep:stg-tsleep-@45@staging.tomorrowsleep.com/office45w45/");
         return AdminPage.Instance;
-    }
-
-    public static void click(SelenideElement element){
-        element.scrollIntoView(true)
-                .click();
     }
 
     public static WebElement findElement(By element, int... timeout) {
@@ -70,9 +65,11 @@ public class BasePage {
         }
     }
 
-    public void closeWelcomeMessage(){
+    public static void closeWelcomeMessage(){
+        waitForPageToLoad();
         reporter.info("Closing welcome message");
         $(".close-button").shouldBe(Condition.visible).click();
+        waitForPageToLoad();
     }
 
     public static void switchToFrame(By xpath) {

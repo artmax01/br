@@ -35,7 +35,6 @@ public class MattressInABoxPlp extends BasePage{
                 .scrollIntoView(true)
                 .click();
 
-
         return MattressInABoxPdp.Instance;
     }
 

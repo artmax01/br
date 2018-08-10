@@ -4,6 +4,7 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import entities.UserEntity;
 import org.openqa.selenium.By;
+import utils.FileIO;
 import utils.Tools;
 
 import static com.codeborne.selenide.Selenide.$;
@@ -56,14 +57,21 @@ public class CheckoutPage extends BasePage{
         waitForPageToLoad();
 
         reporter.info("Selecting Credit Card payment option");
-        creditcardOption.click();
+        creditcardOption.scrollIntoView(true);
+        creditcardOption.shouldBe(Condition.visible)
+            .click();
 
         setCreditcardNumber();
         setExpMonth();
         setExpYear();
         setCVV();
 
-        $(By.xpath(".//span[text()='Place Order'][1]")).shouldBe(Condition.visible).click();
+        if ( $(".message.message-error.error").isDisplayed()){
+            reporter.pass("Expected to recieve error message");
+        }
+
+//        ElementsCollection buttons = getElements(By.cssSelector("button.action.primary.checkout"));
+//        buttons.filterBy(Condition.visible).exclude(Condition.disabled).first().click();
 
         return this;
     }
@@ -92,6 +100,14 @@ public class CheckoutPage extends BasePage{
         reporter.info("Set CVV to: 111");
         switchToFrame(By.xpath(".//iframe[@id='braintree-hosted-field-cvv']"));
         $("#cvv").sendKeys("111");
+
+        if (FileIO.getConfigProperty("EnvType").equals("Near_prod")){
+            reporter.pass("Expected to stop");
+            reporter.closeTest();
+
+        }
+
+        $("#cvv").pressEnter();
         switchToDefaultContent();
     }
 

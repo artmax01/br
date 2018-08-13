@@ -44,6 +44,19 @@ public class BasePage {
             Thread.sleep(1000);
             ((JavascriptExecutor)WebDriverRunner.getWebDriver()).executeScript("arguments[0].click();",c);
 
+        } catch (Exception e) {
+            // TODO: handle exception
+        }
+    }
+
+    public static void hoverTwoItems(WebElement a, WebElement b){
+        try
+        {
+            String mouseOverScript = "if(document.createEvent){var evObj = document.createEvent('MouseEvents');evObj.initEvent('mouseover',true, false); arguments[0].dispatchEvent(evObj);} else if(document.createEventObject) { arguments[0].fireEvent('onmouseover');}";
+            ((JavascriptExecutor) WebDriverRunner.getWebDriver()).executeScript(mouseOverScript,a);
+            Thread.sleep(1000);
+            ((JavascriptExecutor) WebDriverRunner.getWebDriver()).executeScript(mouseOverScript,b);
+            Thread.sleep(1000);
 
         } catch (Exception e) {
             // TODO: handle exception
@@ -88,7 +101,9 @@ public class BasePage {
     public static void closeWelcomeMessage(){
         waitForPageToLoad();
         reporter.info("Closing welcome message");
-        $(".close-button").shouldBe(Condition.visible).click();
+        if ($(".close-button").isDisplayed()) {
+            $(".close-button").shouldBe(Condition.visible).click();
+        }
         waitForPageToLoad();
     }
 

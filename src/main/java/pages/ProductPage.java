@@ -25,13 +25,21 @@ public class ProductPage extends BasePage{
     public static void SelectProductOption(String option){
         reporter.info("Selecting option: " + option);
         getElement(By.xpath(".//a[text()='" + option + "']")).click();
-
+        waitForPageToLoad();
     }
 
     public static CartPage clickAddToCart(){
         reporter.info("Clicking on \"Add to cart\" button");
         waitForPageToLoad();
         getElement(By.cssSelector("#product-addtocart-button"))
+                .click();
+        return CartPage.Instance;
+    }
+
+    public static CartPage clickUpdateProduct(){
+        reporter.info("Clicking on \"Update Product\" button");
+        waitForPageToLoad();
+        getElement(By.cssSelector("#product-updatecart-button"))
                 .click();
         return CartPage.Instance;
     }

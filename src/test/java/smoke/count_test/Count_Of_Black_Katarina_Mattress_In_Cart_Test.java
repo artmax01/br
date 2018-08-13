@@ -59,14 +59,14 @@ public class Count_Of_Black_Katarina_Mattress_In_Cart_Test extends BaseTest {
         header.openMattressByType("Black")
                 .OpenProductPage("KATARINA");
         SelectSize(secondmattress.getSize());
-        SelectProductOption("Soft");
+        SelectProductOption("Soft Pillow Top");
         clickAddToCart();
 
         open(baseUrl);
         header.openMattressByType("Black")
                 .OpenProductPage("KATARINA");
         SelectSize(secondmattress.getSize());
-        SelectProductOption("Soft");
+        SelectProductOption("Soft Pillow Top");
         clickAddToCart();
 
         open(baseUrl);

@@ -59,14 +59,14 @@ public class Count_Of_Silver_Austin_Reef_Mattress_In_Cart_Test extends BaseTest 
         header.openMattressByType("Silver")
                 .OpenProductPage("AUSTIN REEF");
         SelectSize(secondmattress.getSize());
-        SelectProductOption("Soft");
+        SelectProductOption("Medium");
         clickAddToCart();
 
         open(baseUrl);
         header.openMattressByType("Silver")
                 .OpenProductPage("AUSTIN REEF");
         SelectSize(secondmattress.getSize());
-        SelectProductOption("Soft");
+        SelectProductOption("Medium");
         clickAddToCart();
 
         open(baseUrl);

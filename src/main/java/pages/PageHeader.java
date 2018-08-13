@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.codeborne.selenide.Selenide.*;
+import static org.openqa.selenium.By.xpath;
 
 public class PageHeader extends BasePage {
 
@@ -22,15 +23,15 @@ public class PageHeader extends BasePage {
 
     public static SelenideElement
 
-    products = $(By.xpath("(.//A[@class='nav-link'])[1]")),
-    mattresses = $(By.xpath(".//A[@class='nav-link active d-flex flex-column justify-content-center'][text()='Mattresses']")),
-    mattresInBox = $(By.xpath(".//A[@class='nav-link active d-flex flex-column justify-content-center'][text()='Mattress-in-a-box']")),
-    bases = $(By.xpath(".//A[@class='nav-link active d-flex flex-column justify-content-center'][text()='Bases']")),
-    adjustableBase = $(By.xpath(".//A[@class='nav-link active d-flex flex-column justify-content-center'][text()='Adjustable Bases']")),
-    boxSpring = $(By.xpath(".//A[@class='nav-link active d-flex flex-column justify-content-center'][text()='Box Springs']")),
-    accessories = $(By.xpath(".//A[@class='nav-link active d-flex flex-column justify-content-center'][text()='Accessories']")),
-    promotions = $(By.xpath(".//a[@class='nav-link'][text()='Promotions']")),
-    blog = $(By.xpath(".//a[@class='nav-link'][text()='Blog']")),
+    products = $(xpath("(.//A[@class='nav-link'])[1]")),
+    mattresses = $(xpath(".//A[@class='nav-link active d-flex flex-column justify-content-center'][text()='Mattresses']")),
+    mattresInBox = $(xpath(".//A[@class='nav-link active d-flex flex-column justify-content-center'][text()='Mattress-in-a-box']")),
+    bases = $(xpath(".//A[@class='nav-link active d-flex flex-column justify-content-center'][text()='Bases']")),
+    adjustableBase = $(xpath(".//A[@class='nav-link active d-flex flex-column justify-content-center'][text()='Adjustable Bases']")),
+    boxSpring = $(xpath(".//A[@class='nav-link active d-flex flex-column justify-content-center'][text()='Box Springs']")),
+    accessories = $(xpath(".//A[@class='nav-link active d-flex flex-column justify-content-center'][text()='Accessories']")),
+    promotions = $(xpath(".//a[@class='nav-link'][text()='Promotions']")),
+    blog = $(xpath(".//a[@class='nav-link'][text()='Blog']")),
     findAStore = $("i.nav-link-icon").parent(),
 
     /** Minicart elements **/
@@ -43,7 +44,7 @@ public class PageHeader extends BasePage {
     
     By minicartItems = By.cssSelector("div.product-item-details");
     By minicartItemName = By.cssSelector("strong.product-item-name");
-    By minicartQty = By.xpath(".//input[@disabled='disabled']");
+    By minicartQty = xpath(".//input[@disabled='disabled']");
     By minicartPrice = By.cssSelector("span.price");
     By minicartItemDetails = By.cssSelector("dl.product.options.list span");
     By deleteItemFromMinicartButton = By.cssSelector("a.action.delete");
@@ -51,11 +52,11 @@ public class PageHeader extends BasePage {
     /** Header Navigation methods **/
 
     public static MattressPlp openMattressByType(String type){
+        SelenideElement element = $(xpath("//A[@class='nav-link active d-flex flex-column justify-content-center'][text()='" + type + "']"));
         reporter.info("Opening " + type + " matress page");
-        products.hover();
-        mattresses.hover();
+        hoverAndClick(products, mattresses, element);
         // Black, Silver, Platinum
-        getElement(By.xpath("//A[@class='nav-link active d-flex flex-column justify-content-center'][text()='" + type + "']")).click();
+        //getElement(xpath("//A[@class='nav-link active d-flex flex-column justify-content-center'][text()='" + type + "']")).click();
         return MattressPlp.Instance;
     }
 
@@ -71,7 +72,7 @@ public class PageHeader extends BasePage {
         products.hover();
         accessories.hover();
         // Sleeptracker, Pillows, Covers, Pet-Beds
-        getElement(By.xpath("//A[@class='nav-link active d-flex flex-column justify-content-center'][text()='" + type + "']")).click();
+        getElement(xpath("//A[@class='nav-link active d-flex flex-column justify-content-center'][text()='" + type + "']")).click();
         return AccessoryPage.Instance;
     }
 
@@ -233,7 +234,7 @@ public class PageHeader extends BasePage {
 
     public int getCountOfProductsOnMinicartIcon() {
         reporter.info("Getting count of goods from minicart icon");
-        String[] result =$(".counter.qty").getText().split("\n");
+        String[] result = $(".counter.qty").getText().split("\n");
         reporter.info("Items on cart icon are equal to " + Integer.valueOf(result[0]));
         return Integer.valueOf(result[0]);
     }

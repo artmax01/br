@@ -59,14 +59,14 @@ public class Count_Of_Silver_Beachwood_Mattress_In_Cart_Test extends BaseTest {
         header.openMattressByType("Silver")
                 .OpenProductPage("BEACHWOOD");
         SelectSize(secondmattress.getSize());
-        SelectProductOption("Medium");
+        SelectProductOption("Soft");
         clickAddToCart();
 
         open(baseUrl);
         header.openMattressByType("Silver")
                 .OpenProductPage("BEACHWOOD");
         SelectSize(secondmattress.getSize());
-        SelectProductOption("Medium");
+        SelectProductOption("Soft");
         clickAddToCart();
 
         open(baseUrl);

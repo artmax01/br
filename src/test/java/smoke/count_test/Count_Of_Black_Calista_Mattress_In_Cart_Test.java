@@ -59,14 +59,14 @@ public class Count_Of_Black_Calista_Mattress_In_Cart_Test extends BaseTest {
         header.openMattressByType("Black")
                 .OpenProductPage("CALISTA");
         SelectSize(secondmattress.getSize());
-        SelectProductOption("Medium Pillow Top");
+        SelectProductOption("Firm");
         clickAddToCart();
 
         open(baseUrl);
         header.openMattressByType("Black")
                 .OpenProductPage("CALISTA");
         SelectSize(secondmattress.getSize());
-        SelectProductOption("Medium Pillow Top");
+        SelectProductOption("Firm");
         clickAddToCart();
 
         open(baseUrl);

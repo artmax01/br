@@ -29,19 +29,20 @@ public class CartPage extends BasePage{
 //    itemQty = $("input"),
 //    itemPrice = $("span.price"),
 //    itemDetails = $("dd"),
-    itemEditButton = $("a.action.action-edit"),
-    itemDeleteButton = $("a.action.action-delete"),
-    backToShopLink = $x("//A[@class='back-to-shop'][text()='Back to Shop']"),
-    proceedToCheckoutButton = $("button[data-role='proceed-to-checkout']"),
 
-    increaseQtyButton = $x("//button[@name='update_cart_action' and @title='+']"),
-    decreaseQtyButton = $x("//button[@name='update_cart_action' and @title='-']");
+    backToShopLink = $x("//A[@class='back-to-shop'][text()='Back to Shop']"),
+    proceedToCheckoutButton = $("button[data-role='proceed-to-checkout']");
+
+    By increaseQtyButton = By.xpath("//button[@name='update_cart_action' and @title='+']");
+    By decreaseQtyButton = By.xpath("//button[@name='update_cart_action' and @title='-']");
 
     By cartItems = By.cssSelector("tr.item-info");
     By cartItemName = By.cssSelector("strong.product-item-name");
     By itemQty = By.cssSelector("input");
     By itemPrice = By.cssSelector("span.price");
     By itemDetails = By.cssSelector("dd");
+    By itemEditButton = By.cssSelector(".col.action-rem-edit a.action.action-edit");
+    By itemDeleteButton = By.cssSelector(".col.action-rem-edit a.action.action-delete");
 
     public boolean itemDisplayedOnViewCartPage(ItemEntity item) {
         waitForPageToLoad();
@@ -133,10 +134,10 @@ public class CartPage extends BasePage{
     //click on edit button for item in View Cart
     public void clickOnEditProduct(String itemName) {
         reporter.info("Edit item from View cart page: " + itemName );
-        ElementsCollection itemsList = getElements((By) cartItems);
+        ElementsCollection itemsList = getElements(cartItems);
         for (WebElement orderItem : itemsList ) {
-            if ( orderItem.findElement((By) cartItemName).getText().equals(itemName)) {
-                orderItem.findElement((By) itemEditButton).click();
+            if ( orderItem.findElement(cartItemName).getText().equals(itemName)) {
+                orderItem.findElement(itemEditButton).click();
                 return;
             }
         }
@@ -145,10 +146,10 @@ public class CartPage extends BasePage{
     //click on delete button for item in View Cart
     public void clickOnDeleteProduct(String itemName) {
         reporter.info("Delete item from View cart page: " + itemName );
-        ElementsCollection itemsList = getElements((By) cartItems);
+        ElementsCollection itemsList = getElements(cartItems);
         for (WebElement orderItem : itemsList ) {
-            if ( orderItem.findElement((By) cartItemName).getText().equals(itemName)) {
-                orderItem.findElement((By) itemDeleteButton).click();
+            if ( orderItem.findElement(cartItemName).getText().equals(itemName)) {
+                orderItem.findElement(itemDeleteButton).click();
                 return;
             }
         }
@@ -159,8 +160,8 @@ public class CartPage extends BasePage{
         reporter.info("Increase number of items on View cart page: " + itemName );
         ElementsCollection itemsList = getElements((By) cartItems);
         for (WebElement orderItem : itemsList ) {
-            if ( orderItem.findElement((By) cartItemName).getText().equals(itemName)) {
-                orderItem.findElement((By) increaseQtyButton).click();
+            if ( orderItem.findElement(cartItemName).getText().equals(itemName)) {
+                orderItem.findElement(increaseQtyButton).click();
                 return;
             }
         }

@@ -35,7 +35,7 @@ public class BasePage {
         closeWelcomeMessage();
     }
 
-    public static void hoverAndClick(WebElement a, WebElement b, WebElement c)
+    public static void hover2ItemsAndClick(WebElement a, WebElement b, WebElement c)
     {
         try
         {

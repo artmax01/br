@@ -52,11 +52,10 @@ public class PageHeader extends BasePage {
     /** Header Navigation methods **/
 
     public static MattressPlp openMattressByType(String type){
+        // Black, Silver, Platinum
         SelenideElement element = $(xpath("//A[@class='nav-link active d-flex flex-column justify-content-center'][text()='" + type + "']"));
         reporter.info("Opening " + type + " matress page");
-        hoverAndClick(products, mattresses, element);
-        // Black, Silver, Platinum
-        //getElement(xpath("//A[@class='nav-link active d-flex flex-column justify-content-center'][text()='" + type + "']")).click();
+        hover2ItemsAndClick(products, mattresses, element);
         return MattressPlp.Instance;
     }
 
@@ -69,8 +68,7 @@ public class PageHeader extends BasePage {
 
     public static AccessoryPage openAccessoryByType(String type){
         reporter.info("Opening " + type + " accessory page");
-        products.hover();
-        accessories.hover();
+        hoverTwoItems(products, accessories);
         // Sleeptracker, Pillows, Covers, Pet-Beds
         getElement(xpath("//A[@class='nav-link active d-flex flex-column justify-content-center'][text()='" + type + "']")).click();
         return AccessoryPage.Instance;
@@ -92,18 +90,13 @@ public class PageHeader extends BasePage {
 
     public static AdjustableBasePlp openAdjustableBase(){
         reporter.info("Opening Adjustable Base Page");
-        products.hover();
-        bases.hover();
-        adjustableBase.click();
+        hover2ItemsAndClick(products, bases, adjustableBase);
         return AdjustableBasePlp.Instance;
     }
 
     public static AdjustableBasePlp openBoxSpring(){
         reporter.info("Opening Box Springs Page");
-//        products.hover();
-//        bases.hover();
-//        boxSpring.click();
-        hoverAndClick(products, bases, boxSpring);
+        hover2ItemsAndClick(products, bases, boxSpring);
         return AdjustableBasePlp.Instance;
     }
 

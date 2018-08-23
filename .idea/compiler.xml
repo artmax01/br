@@ -9,5 +9,8 @@
         <module name="beautyrest" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="beautyrest" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
 </project>

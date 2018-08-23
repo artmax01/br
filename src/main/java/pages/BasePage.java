@@ -16,7 +16,9 @@ import utils.FileIO;
 import utils.ReporterManager;
 import utils.Tools;
 
+import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.$;
+import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfElementLocated;
 
 public class BasePage {
 
@@ -75,7 +77,7 @@ public class BasePage {
         try {
             //synchronize();
             (new WebDriverWait(WebDriverRunner.getWebDriver(), timeoutForFindElement))
-                    .until(ExpectedConditions.visibilityOfElementLocated(element));
+                    .until(visibilityOfElementLocated(element));
             return WebDriverRunner.getWebDriver().findElement(element);
         } catch (Exception e) {
             reporter.fail(Tools.getStackTrace(e));
@@ -84,11 +86,7 @@ public class BasePage {
     }
 
     public static void waitForPageToLoad() {
-        ExpectedCondition<Boolean> expectation = new ExpectedCondition<Boolean>() {
-                    public Boolean apply(WebDriver driver) {
-                        return ((JavascriptExecutor) driver).executeScript("return document.readyState").toString().equals("complete");
-                    }
-                };
+        ExpectedCondition<Boolean> expectation = driver -> ((JavascriptExecutor) driver).executeScript("return document.readyState").toString().equals("complete");
         try {
             Thread.sleep(2000);
             WebDriverWait wait = new WebDriverWait(WebDriverRunner.getWebDriver(), 30);
@@ -101,9 +99,10 @@ public class BasePage {
     public static void closeWelcomeMessage(){
         waitForPageToLoad();
         reporter.info("Closing welcome message");
-        if ($(".close-button").isDisplayed()) {
-            $(".close-button").shouldBe(Condition.visible).click();
-        }
+        $(".close-button").click();
+//        if ($(".close-button").isDisplayed()) {
+//            $(".close-button").shouldBe(visible).click();
+//        }
         waitForPageToLoad();
     }
 

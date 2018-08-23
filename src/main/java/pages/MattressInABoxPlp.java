@@ -13,7 +13,7 @@ public class MattressInABoxPlp extends BasePage{
     public static MattressInABoxPlp Instance = (instance != null) ? instance : new MattressInABoxPlp();
 
     public MattressInABoxPlp(){
-        pageURL = "https://www.beautyrest.com/Mattress-In-A-Box";
+        pageURL = "/mattress-in-a-box";
         pageTitle = "Mattress In A Box | Beautyrest";
     }
 

@@ -13,19 +13,21 @@ import utils.EntitiesFactory;
 import utils.FileIO;
 
 import static com.codeborne.selenide.Configuration.baseUrl;
+import static com.codeborne.selenide.Selenide.close;
 import static com.codeborne.selenide.Selenide.open;
 import static pages.BasePage.closeWelcomeMessage;
 
 public class Delete_Box_Spring_From_Cart_Test extends BaseTest {
 
+    PageHeader header = PageHeader.Instance;
+    ProductPage product = ProductPage.Instance;
+    CartPage cart = CartPage.Instance;
+
     @Test
-    @TestName(name = "Delete Box Spring from cart")
+    @TestName(name = "Delete Black Box Spring from cart")
 
-    public void DeleteBoxSpringFromCartTest() throws Exception {
+    public void deleteBlackBoxSpringFromCartTest() throws Exception {
 
-        PageHeader header = PageHeader.Instance;
-        ProductPage product = ProductPage.Instance;
-        CartPage cart = CartPage.Instance;
         ItemEntity item = EntitiesFactory.getItem(FileIO.getDataFile("mattress/box_spring_black.json"));
 
         open(baseUrl);
@@ -42,5 +44,57 @@ public class Delete_Box_Spring_From_Cart_Test extends BaseTest {
         cart.clickOnDeleteProduct(item.getTitle());
 
         Assert.assertFalse(cart.itemDisplayedOnViewCartPage(item), "Item was found on cart page");
+
+        close();
+    }
+
+    @Test
+    @TestName (name = "Delete Silver Box Spring from cart")
+
+    public void deleteSilverBoxSpringFromCartTest() throws Exception {
+
+        ItemEntity item = EntitiesFactory.getItem(FileIO.getDataFile("mattress/box_spring_silver.json"));
+
+        open(baseUrl);
+        closeWelcomeMessage();
+        header.openBoxSpring();
+        AdjustableBasePlp.OpenProductPage("SILVER");
+
+        product.SelectSize(item.getSize());
+        product.SelectProductOption("Low Profile");
+        product.clickAddToCart();
+
+        Assert.assertTrue(cart.itemDisplayedOnViewCartPage(item), "Item was not found on cart page");
+
+        cart.clickOnDeleteProduct(item.getTitle());
+
+        Assert.assertFalse(cart.itemDisplayedOnViewCartPage(item), "Item was found on cart page");
+
+        close();
+    }
+
+    @Test
+    @TestName (name = "Delete Platinum Box Spring from cart")
+
+    public void deletePlatinumBoxSpringFromCartTest() throws Exception {
+
+        ItemEntity item = EntitiesFactory.getItem(FileIO.getDataFile("mattress/box_spring_platinum.json"));
+
+        open(baseUrl);
+        closeWelcomeMessage();
+        header.openBoxSpring();
+        AdjustableBasePlp.OpenProductPage("PLATINUM");
+
+        product.SelectSize(item.getSize());
+        product.SelectProductOption("Low Profile");
+        product.clickAddToCart();
+
+        Assert.assertTrue(cart.itemDisplayedOnViewCartPage(item), "Item was not found on cart page");
+
+        cart.clickOnDeleteProduct(item.getTitle());
+
+        Assert.assertFalse(cart.itemDisplayedOnViewCartPage(item), "Item was found on cart page");
+
+        close();
     }
 }

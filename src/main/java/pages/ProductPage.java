@@ -1,5 +1,6 @@
 package pages;
 
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
 
@@ -12,8 +13,13 @@ public class ProductPage extends BasePage{
     public static ProductPage Instance = (instance != null) ? instance : new ProductPage();
 
     /** UI Mapping **/
+
     public static SelenideElement
-    sizeByDefault = $(By.xpath("//div[@aria-checked='true' and @aria-describedby='option-label-bed_size-177']"));
+    sizeByDefault = $(By.xpath("//div[@aria-checked='true' and @aria-describedby='option-label-bed_size-177']")),
+    klarnaBlock = $(".klarna-placement");
+
+
+    //* Page Methods **/
 
     public static void SelectSize(String size){
         reporter.info("Selecting product size: " + size);
@@ -42,6 +48,18 @@ public class ProductPage extends BasePage{
         getElement(By.cssSelector("#product-updatecart-button"))
                 .click();
         return CartPage.Instance;
+    }
+
+    public static void verifyKlarnaPresence(){
+        reporter.info("Search page for \"Klarna\" block");
+        klarnaBlock.scrollIntoView(true)
+                .shouldBe(Condition.visible);
+                //.should(Condition.have(Condition.text(" As low as $25/mo. ")));
+    }
+
+    public static void verifyKlarnaAbsence(){
+        reporter.info("Checking that \"Klarna\" block is not displayed");
+        getElement(By.xpath(".//div[@class='klarna-placement']//iframe")).shouldNotBe(Condition.visible);
     }
 
 }

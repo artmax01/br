@@ -6,6 +6,8 @@ import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.Condition.attribute;
+import static com.codeborne.selenide.Condition.disabled;
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.*;
 
 public class MattressPlp extends BasePage{
@@ -36,6 +38,10 @@ public class MattressPlp extends BasePage{
             priceStep_1000_1999 = $x(".//div[@class='Step']/span[contains(text(), '$100')]/.."),
             priceStep_2000_2999 = $x(".//div[@class='Step']/span[contains(text(), '$2000')]/.."),
             priceStep_3000_or_more = $x(".//div[@class='Step']/span[contains(text(), '$3000')]/.."),
+
+    compareButton = $("a.action.compare.primary.btn"),
+    clearSelectionsButton = $x(".//span[text()='Clear Selections']"),
+    confirmSelectionRemoval = $(".action-primary.action-accept"),
 
     product = $(".product-item-name");
 
@@ -201,7 +207,7 @@ public class MattressPlp extends BasePage{
     }
 
     public static boolean OnlyHybridAreDisplayed(){
-        ElementsCollection products = getElements(By.cssSelector(".product-item.col-lg-4"))
+        ElementsCollection products = $$(".product-item.col-lg-4")
                 .exclude(Condition.attribute("style", "display: none;"));
         //Verify that only selected products are displayed
         //products.shouldHave(size()); // TODO: 7/11/18
@@ -215,4 +221,54 @@ public class MattressPlp extends BasePage{
         return false;
     }
 
+    public static boolean compareButtonIsDisplayed(){
+        ElementsCollection products = getElements(By.cssSelector(".product-item.col-lg-4"));
+        for (SelenideElement element : products){
+            if (element.has(Condition.text("Compare +"))){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static void addProductsForComparison() {
+        reporter.info("Adding products for comparison");
+        ElementsCollection button = $$x(".//span[text()='Compare +']");
+        for (int x=0; x<3; x++){
+            button.get(x).scrollIntoView(true)
+                    .click();
+        }
+    }
+
+    public static void addOneProductForComparison(){
+        reporter.info("Adding product for comparison");
+        $x(".//span[text()='Compare +']")
+                .scrollIntoView(true)
+                .click();
+    }
+
+    public ComparisonPage clickOnCompareButton(){
+        reporter.info("Clicking on \"Compare\" button");
+        compareButton.shouldBe(visible);
+        compareButton.scrollIntoView(true)
+                .click();
+        return ComparisonPage.Instance;
+    }
+
+    public static boolean compareBlockIsDisplayed() {
+        reporter.info("Chenking presence of Comparison Block");
+        if ( $("#compare-items").isDisplayed() && compareButton.isDisplayed()
+                && clearSelectionsButton.isDisplayed()){
+            return true;
+        }
+        return false;
+    }
+
+    public static void clickOnClearSelectionsButton(){
+        reporter.info("Clicking on \"Clear Selections\" button");
+        clearSelectionsButton.scrollIntoView(true)
+                .click();
+        confirmSelectionRemoval.shouldBe(visible)
+                .click();
+    }
 }

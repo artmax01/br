@@ -16,6 +16,7 @@ public class FaqPage extends BasePage {
 
     public static SelenideElement
     searchBox = $("input#search"),
+    searchResult = $(".faq_wrapper"),
     ourMattresses = $(By.xpath(".//li[@data-target='#collapse-0']")),
     returnsAndWarranty = $(By.xpath(".//li[@data-target='#collapse-1']")),
     purchasing = $(By.xpath(".//li[@data-target='#collapse-2']")),
@@ -23,6 +24,15 @@ public class FaqPage extends BasePage {
 
 
     /** Page Methods **/
+
+    public static void verifySearchBox(){
+        reporter.info("Submitting \"mattress\" search request");
+        searchBox.scrollIntoView(true).
+                sendKeys("mattress");
+        searchBox.submit();
+        searchResult.scrollIntoView(true).
+                shouldBe(Condition.visible).should(Condition.have(Condition.text("What is a hybrid mattress?")));
+    }
 
     public static void verifyOurMattressAccordion(){
         reporter.info("Expanding Our Mattresses");

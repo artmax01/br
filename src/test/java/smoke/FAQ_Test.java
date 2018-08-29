@@ -20,9 +20,10 @@ public class FAQ_Test extends BaseTest{
         closeWelcomeMessage();
         PageFooter.openFAQ();
 
-        verifyOurMattressAccordion();
-        verifyReturnsAndWarrantyAccordion();
-        verifyPurchasingAccordion();
-        verifyShippingAndDeliveryAccordion();
+//        verifyOurMattressAccordion();
+//        verifyReturnsAndWarrantyAccordion();
+//        verifyPurchasingAccordion();
+//        verifyShippingAndDeliveryAccordion();
+        verifySearchBox();
     }
 }

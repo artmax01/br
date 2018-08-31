@@ -8,6 +8,8 @@ import utils.FileIO;
 import utils.Tools;
 
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$x;
+import static com.codeborne.selenide.Selenide.close;
 
 public class CheckoutPage extends BasePage{
 
@@ -37,7 +39,8 @@ public class CheckoutPage extends BasePage{
     billingSameOption = $(By.xpath(".//span[text()='Billing same as shipping']")),
     creditcardOption = $(By.xpath(".//span[text()='Credit Card']")),
     paypalOption = $(By.xpath(".//span[text()='PayPal (Braintree)']")),
-    klarnaOption = $(By.xpath(".//input[@class='radio' and @id='klarna_pay_over_time']/..")),
+    klarnaOption = $(By.cssSelector("#klarna_pay_over_time")),
+    klarnaSubmitOrder = $x(".//input[@id='klarna_pay_over_time']/../..//button/span"),
 
     orderNumber = $("p.order-number span"),
     continueShoppingButton = $("a.action.primary.continue");
@@ -48,7 +51,32 @@ public class CheckoutPage extends BasePage{
     public CheckoutPage selectBillingSameAsShippingOption(){
         waitForPageToLoad();
         reporter.info("Select billing address same as shipping");
-        billingSameOption.click();
+        if (!billingSameOption.isSelected()) {
+            billingSameOption.click();
+        }
+        return this;
+    }
+
+    public CheckoutPage payWithKlarna(){
+        waitForPageToLoad();
+        selectBillingSameAsShippingOption();
+
+        reporter.info("Selecting Klarna payment option");
+        klarnaOption.scrollIntoView(true);
+        clickWithJS(klarnaOption);
+
+        reporter.info("Clicking on \"Place Order\" button");
+        waitForPageToLoad();
+        klarnaSubmitOrder.scrollIntoView(true);
+        clickWithJS(klarnaSubmitOrder);
+
+//        switchToFrame(By.xpath(".//iframe[@id='Agree and submit application']"));
+//        setBirthDate();
+//        setSNN();
+//        $("#signup-us-contract-agree-checkbox__box").click();
+//        $x(".//span[contains(text(), 'Agree and submit application')]").click();
+//        switchToDefaultContent();
+
         return this;
     }
 
@@ -74,6 +102,16 @@ public class CheckoutPage extends BasePage{
 //        buttons.filterBy(Condition.visible).exclude(Condition.disabled).first().click();
 
         return this;
+    }
+
+    public void setBirthDate(){
+        reporter.info("Setting date of birth to: ");
+        $(By.name("dateOfBirth")).sendKeys("");
+    }
+
+    public void setSNN(){
+        reporter.info("Setting SNN to: ");
+        $(By.name("socialSecurityNumber")).sendKeys("");
     }
 
     public void setCreditcardNumber() {
@@ -102,9 +140,9 @@ public class CheckoutPage extends BasePage{
         $("#cvv").sendKeys("111");
 
         if (FileIO.getConfigProperty("EnvType").equals("Near_prod")){
-            reporter.pass("Expected to stop");
+            reporter.pass("Expected to stop on near_prod");
             reporter.closeTest();
-
+            close();
         }
 
         $("#cvv").pressEnter();

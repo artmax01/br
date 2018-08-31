@@ -227,6 +227,7 @@ public class PageHeader extends BasePage {
 
     public int getCountOfProductsOnMinicartIcon() {
         reporter.info("Getting count of goods from minicart icon");
+        waitForPageToLoad();
         String[] result = $(".counter.qty").getText().split("\n");
         reporter.info("Items on cart icon are equal to " + Integer.valueOf(result[0]));
         return Integer.valueOf(result[0]);

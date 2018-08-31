@@ -1,12 +1,11 @@
 package utils;
 
 import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.Selenide;
+import com.codeborne.selenide.WebDriverRunner;
 import org.monte.screenrecorder.ScreenRecorder;
 import org.testng.ITestResult;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.AfterSuite;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.*;
 
 import java.awt.*;
 import java.io.IOException;
@@ -33,18 +32,23 @@ public class BaseTest{
         ThreadLocal<ScreenRecorder> recorder = new ThreadLocal<ScreenRecorder>();
     }
 
+    @BeforeTest
+    public void beforeTest(){
+        Selenide.clearBrowserCookies();
+    }
+
     @BeforeClass
     public static void setup() throws IOException, AWTException {
 
         //Selenide configuration based on .properties file
 
-        Configuration.timeout = 20000;
+        Configuration.timeout = 30000;
         Configuration.collectionsTimeout = 30000;
         Configuration.browser = FileIO.getConfigProperty("Driver");
         Configuration.baseUrl = FileIO.getConfigProperty("baseUrl");
         Configuration.captureJavascriptErrors = true;
         Configuration.driverManagerEnabled = true;
-        //Configuration.headless = true;
+        Configuration.headless = true;
         Configuration.screenshots = false;
         Configuration.savePageSource = false;
         Configuration.startMaximized = true;

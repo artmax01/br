@@ -1,4 +1,4 @@
-package smoke;
+package smoke.general_test;
 
 import annotations.TestName;
 import org.testng.Assert;
@@ -61,9 +61,9 @@ public class Comparison_Test extends BaseTest{
 
 
     @Test
-    @TestName (name = "Clear selections button functionality test")
+    @TestName (name = "Clear comparison selections button functionality test")
 
-    public void checkClearSelectionsButton(){
+    public void checkClearComparisonSelectionsButton(){
 
         open(baseUrl);
         closeWelcomeMessage();

@@ -44,7 +44,7 @@ public class Adjustable_Base_Full_Test extends BaseTest {
 
         header.clickOnViewCheckoutPage();
         checkout.populateShippingFields(user)
-                .payWithCreditCard();
+                .payWithKlarna();
         Assert.assertTrue(checkout.orderHasBeenPlaced(), "Failed to place order");
 
         String orderNumber = checkout.getOrderNumber();

@@ -15,6 +15,7 @@ import utils.FileIO;
 import static com.codeborne.selenide.Configuration.baseUrl;
 import static com.codeborne.selenide.Selenide.open;
 import static pages.BasePage.closeWelcomeMessage;
+import static pages.BasePage.quit;
 
 
 public class Mattress_Full_Test extends BaseTest {
@@ -26,25 +27,16 @@ public class Mattress_Full_Test extends BaseTest {
     CheckoutPage checkout = CheckoutPage.Instance;
     AdminPage admin = AdminPage.Instance;
 
-    UserEntity user = EntitiesFactory.getUser(FileIO.getDataFile("user.json"));
-
-    public Mattress_Full_Test() throws Exception {
-    }
-
-    @BeforeTest
-    public void closeWelcome(){
-        open(baseUrl);
-        closeWelcomeMessage();
-    }
-
     @Test
     @TestName (name = "Black Calista mattress full test")
 
     public void black_calista_mattress_full_test() throws Exception {
 
         ItemEntity item = EntitiesFactory.getItem(FileIO.getDataFile("mattress/black_calista.json"));
+        UserEntity user = EntitiesFactory.getUser(FileIO.getDataFile("user.json"));
 
         open(baseUrl);
+        closeWelcomeMessage();
 
         header.openMattressByType("Black")
                 .OpenProductPage("CALISTA");
@@ -74,6 +66,8 @@ public class Mattress_Full_Test extends BaseTest {
 
         admin.clickOnCancelButton();
         Assert.assertTrue(admin.orderHasBeenCanceled(), "Failed to cancel order " + orderNumber);
+
+        quit();
     }
 
     @Test
@@ -82,8 +76,11 @@ public class Mattress_Full_Test extends BaseTest {
     public void black_katarina_mattress_full_test() throws Exception{
 
         ItemEntity item = EntitiesFactory.getItem(FileIO.getDataFile("mattress/black_katarina.json"));
+        UserEntity user = EntitiesFactory.getUser(FileIO.getDataFile("user.json"));
 
         open(baseUrl);
+        closeWelcomeMessage();
+
         header.openMattressByType("Black")
                 .OpenProductPage("KATARINA");
 
@@ -112,6 +109,8 @@ public class Mattress_Full_Test extends BaseTest {
 
         admin.clickOnCancelButton();
         Assert.assertTrue(admin.orderHasBeenCanceled(), "Failed to cancel order " + orderNumber);
+
+        quit();
     }
 
     @Test
@@ -120,8 +119,11 @@ public class Mattress_Full_Test extends BaseTest {
     public void platinum_springgrove_mattress_full_test() throws Exception {
 
         ItemEntity item = EntitiesFactory.getItem(FileIO.getDataFile("mattress/platinum_spring_grove.json"));
+        UserEntity user = EntitiesFactory.getUser(FileIO.getDataFile("user.json"));
 
         open(baseUrl);
+        closeWelcomeMessage();
+
         header.openMattressByType("Platinum")
                 .OpenProductPage("SPRING GROVE");
 
@@ -150,6 +152,8 @@ public class Mattress_Full_Test extends BaseTest {
 
         admin.clickOnCancelButton();
         Assert.assertTrue(admin.orderHasBeenCanceled(), "Failed to cancel order " + orderNumber);
+
+        quit();
     }
 
     @Test
@@ -158,8 +162,11 @@ public class Mattress_Full_Test extends BaseTest {
     public void platinum_crestridge_mattress_full_test() throws Exception {
 
         ItemEntity item = EntitiesFactory.getItem(FileIO.getDataFile("mattress/platinum_crestridge.json"));
+        UserEntity user = EntitiesFactory.getUser(FileIO.getDataFile("user.json"));
 
         open(baseUrl);
+        closeWelcomeMessage();
+
         header.openMattressByType("Platinum")
                 .OpenProductPage("CRESTRIDGE");
 
@@ -188,6 +195,8 @@ public class Mattress_Full_Test extends BaseTest {
 
         admin.clickOnCancelButton();
         Assert.assertTrue(admin.orderHasBeenCanceled(), "Failed to cancel order " + orderNumber);
+
+        quit();
     }
 
     @Test
@@ -196,8 +205,11 @@ public class Mattress_Full_Test extends BaseTest {
     public void platinum_atlascove_mattress_full_test() throws Exception {
 
         ItemEntity item = EntitiesFactory.getItem(FileIO.getDataFile("mattress/platinum_atlas_cove.json"));
+        UserEntity user = EntitiesFactory.getUser(FileIO.getDataFile("user.json"));
 
         open(baseUrl);
+        closeWelcomeMessage();
+
         header.openMattressByType("Platinum")
                 .OpenProductPage("ATLAS COVE");
 
@@ -226,6 +238,8 @@ public class Mattress_Full_Test extends BaseTest {
 
         admin.clickOnCancelButton();
         Assert.assertTrue(admin.orderHasBeenCanceled(), "Failed to cancel order " + orderNumber);
+
+        quit();
     }
 
     @Test
@@ -234,8 +248,11 @@ public class Mattress_Full_Test extends BaseTest {
     public void silver_openseas_mattress_full_test() throws Exception {
 
         ItemEntity item = EntitiesFactory.getItem(FileIO.getDataFile("mattress/silver_open_seas.json"));
+        UserEntity user = EntitiesFactory.getUser(FileIO.getDataFile("user.json"));
 
         open(baseUrl);
+        closeWelcomeMessage();
+
         header.openMattressByType("Silver")
                 .OpenProductPage("OPEN SEAS");
 
@@ -264,6 +281,8 @@ public class Mattress_Full_Test extends BaseTest {
 
         admin.clickOnCancelButton();
         Assert.assertTrue(admin.orderHasBeenCanceled(), "Failed to cancel order " + orderNumber);
+
+        quit();
     }
 
     @Test
@@ -272,8 +291,11 @@ public class Mattress_Full_Test extends BaseTest {
     public void silver_beachwood_mattress_full_test() throws Exception {
 
         ItemEntity item = EntitiesFactory.getItem(FileIO.getDataFile("mattress/silver_beachwood.json"));
+        UserEntity user = EntitiesFactory.getUser(FileIO.getDataFile("user.json"));
 
         open(baseUrl);
+        closeWelcomeMessage();
+
         header.openMattressByType("Silver")
                 .OpenProductPage("BEACHWOOD");
 
@@ -302,6 +324,8 @@ public class Mattress_Full_Test extends BaseTest {
 
         admin.clickOnCancelButton();
         Assert.assertTrue(admin.orderHasBeenCanceled(), "Failed to cancel order " + orderNumber);
+
+        quit();
     }
 
     @Test
@@ -310,8 +334,11 @@ public class Mattress_Full_Test extends BaseTest {
     public void silver_austinreef_mattress_full_test() throws Exception {
 
         ItemEntity item = EntitiesFactory.getItem(FileIO.getDataFile("mattress/silver_austin_reef.json"));
+        UserEntity user = EntitiesFactory.getUser(FileIO.getDataFile("user.json"));
 
         open(baseUrl);
+        closeWelcomeMessage();
+
         header.openMattressByType("Silver")
                 .OpenProductPage("AUSTIN REEF");
 
@@ -340,6 +367,8 @@ public class Mattress_Full_Test extends BaseTest {
 
         admin.clickOnCancelButton();
         Assert.assertTrue(admin.orderHasBeenCanceled(), "Failed to cancel order " + orderNumber);
+
+        quit();
     }
 
 }

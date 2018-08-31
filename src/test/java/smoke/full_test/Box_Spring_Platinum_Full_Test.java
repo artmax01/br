@@ -36,7 +36,7 @@ public class Box_Spring_Platinum_Full_Test extends BaseTest {
         AdjustableBasePlp.OpenProductPage("PLATINUM");
 
         product.SelectSize(item.getSize());
-        product.SelectProductOption("Low");
+        product.SelectProductOption("Low Profile");
         product.clickAddToCart();
         Assert.assertTrue(cart.itemDisplayedOnViewCartPage(item), "Item was not displayed on cart page");
 

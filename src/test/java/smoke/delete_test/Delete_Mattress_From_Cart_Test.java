@@ -12,6 +12,7 @@ import utils.BaseTest;
 import static com.codeborne.selenide.Configuration.baseUrl;
 import static com.codeborne.selenide.Selenide.open;
 import static pages.BasePage.closeWelcomeMessage;
+import static pages.BasePage.quit;
 
 public class Delete_Mattress_From_Cart_Test extends BaseTest {
 
@@ -53,5 +54,7 @@ public class Delete_Mattress_From_Cart_Test extends BaseTest {
         cart.clickOnDeleteProduct(name);
 
         Assert.assertFalse(cart.itemDisplayedOnViewCartPage(name), "Item was displayed in cart");
+
+        quit();
     }
 }

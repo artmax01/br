@@ -1,9 +1,6 @@
 package pages;
 
-import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.Configuration;
-import com.codeborne.selenide.Selenide;
-import com.codeborne.selenide.WebDriverRunner;
+import com.codeborne.selenide.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -72,7 +69,7 @@ public class BasePage {
     }
 
     public static WebElement findElement(By element, int... timeout) {
-        int timeoutForFindElement = timeout.length < 1 ? (int) Configuration.timeout : timeout[0];
+        int timeoutForFindElement = timeout.length < 1 ? (int) Configuration.timeout/5000 : timeout[0];
         waitForPageToLoad();
         try {
             //synchronize();
@@ -96,6 +93,11 @@ public class BasePage {
         }
     }
 
+    public static void clickWithJS(WebElement element){
+        JavascriptExecutor executor = (JavascriptExecutor)WebDriverRunner.getWebDriver();
+        executor.executeScript("arguments[0].click();", element);
+    }
+
     public static void closeWelcomeMessage(){
         waitForPageToLoad();
         reporter.info("Closing welcome message");
@@ -114,6 +116,13 @@ public class BasePage {
     public void switchToDefaultContent() {
         reporter.info("Switching to default content");
         WebDriverRunner.getWebDriver().switchTo().defaultContent();
+    }
+
+    public static void quit(){
+        Selenide.clearBrowserLocalStorage();
+        Selenide.clearBrowserCookies();
+        WebDriverRunner.getWebDriver().close();
+        WebDriverRunner.getWebDriver().quit();
     }
 
 }

@@ -1,4 +1,4 @@
-package smoke;
+package smoke.general_test;
 
 import annotations.TestName;
 import org.testng.annotations.Test;

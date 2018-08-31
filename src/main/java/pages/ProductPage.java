@@ -1,11 +1,12 @@
 package pages;
 
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
+import com.codeborne.selenide.WebDriverRunner;
 import org.openqa.selenium.By;
 
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.getElement;
+import static com.codeborne.selenide.Selenide.*;
 
 public class ProductPage extends BasePage{
 
@@ -34,11 +35,20 @@ public class ProductPage extends BasePage{
         waitForPageToLoad();
     }
 
-    public static CartPage clickAddToCart(){
+    public static CartPage clickAddToCart() {
         reporter.info("Clicking on \"Add to cart\" button");
         waitForPageToLoad();
         getElement(By.cssSelector("#product-addtocart-button"))
                 .click();
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        if ( $(".xs-modal__sold").isDisplayed()){
+            reporter.info("closing popup");
+            $x(".//a[contains(text(), 'Checkout Now ')]").click();
+        }
         return CartPage.Instance;
     }
 

@@ -6,7 +6,7 @@ import entities.ItemEntity;
 import org.openqa.selenium.By;
 import utils.FileIO;
 
-import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.*;
 
 public class AdminPage extends BasePage {
 
@@ -43,6 +43,14 @@ public class AdminPage extends BasePage {
         $("#login").sendKeys("Tomorrow101");
         $(".action-login.action-primary").click();
         waitForPageToLoad();
+
+        if ( $(".admin__field-complex-text").isDisplayed()){
+            $x(".//span[text()='Next >']").click();
+            $x(".//span[text()='Next >']").click();
+            $x(".//span[text()='Next >']").click();
+            $x(".//span[text()='Done']").click();
+        }
+
         return this;
     }
 
@@ -50,8 +58,11 @@ public class AdminPage extends BasePage {
         reporter.info("Opening Orders page in Admin panel");
         salesTab.click();
         ordersLink.click();
+        waitForPageToLoad();
+        $("div.spinner").shouldNotBe(Condition.visible);
         return this;
     }
+
     public boolean orderIsDisplayedOnOrdersPage(String orderNumber){
         waitForPageToLoad();
         reporter.info("Verifying that order is displayed on Orders page");
@@ -89,6 +100,7 @@ public class AdminPage extends BasePage {
     }
 
     public boolean orderHasBeenCanceled(){
+        waitForPageToLoad();
         if (successMessage.isDisplayed() && successMessage.getText().contains("You canceled the order.")){
             return true;
         }

@@ -20,6 +20,7 @@ public class MattressPlp extends BasePage{
     pageTitle = "BR Mattresses";}
 
 
+
     /* UI elements */
     public static SelenideElement
             blackMattresses = $(By.xpath(".//a[@class='btn btn-black' and contains(text(), 'Black')]")),
@@ -65,7 +66,7 @@ public class MattressPlp extends BasePage{
     public static boolean AllPricesAreDisplayed(){
         reporter.info("Checking that all mattresses are displayed");
         if (getElements(By.cssSelector(".product-item.col-lg-4"))
-                .size() == 38){
+                .size() == 55){
             return true;
         }
         return false;
@@ -241,6 +242,7 @@ public class MattressPlp extends BasePage{
     }
 
     public static void addOneProductForComparison(){
+        waitForPageToLoad();
         reporter.info("Adding product for comparison");
         $x(".//span[text()='Compare +']")
                 .scrollIntoView(true)

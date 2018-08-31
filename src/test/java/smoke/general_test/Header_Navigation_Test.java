@@ -1,4 +1,4 @@
-package smoke;
+package smoke.general_test;
 
 import annotations.TestName;
 import com.codeborne.selenide.Selenide;
@@ -21,12 +21,14 @@ public class Header_Navigation_Test extends BaseTest{
 
     public static void HeaderNavigationTest(){
 
+        MattressPlp mattressPlp = MattressPlp.Instance;
+
         open(baseUrl);
         closeWelcomeMessage();
 
         PageHeader.openMattressesPlp();
         //Assert.assertTrue(title().equals(MattressPlp.pageTitle), "Page title is: " + title());
-        Assert.assertEquals(url(), baseUrl + MattressPlp.pageURL);
+        Assert.assertEquals(url(), baseUrl + "/mattresses");
 
         PageHeader.openMattressByType("Black");
         //Assert.assertTrue(title().equals("Black"), "title is: " + title());
@@ -42,11 +44,11 @@ public class Header_Navigation_Test extends BaseTest{
 
         PageHeader.openMattressInABox();
         //Assert.assertTrue(title().equals(MattressInABoxPlp.pageTitle), "Page title is: " + title());
-        Assert.assertEquals(url(), baseUrl + MattressInABoxPlp.pageURL, "Page url is: " + url());
+        Assert.assertEquals(url(), baseUrl + "/mattress-in-a-box", "Page url is: " + url());
 
         PageHeader.openAdjustableBase();
         //Assert.assertTrue(title().equals(AdjustableBasePlp.pageTitle), "Page title is: " + title());
-        Assert.assertEquals(url(), baseUrl + AdjustableBasePlp.pageURL, "Page url is: " + url());
+        Assert.assertEquals(url(), baseUrl + "/adjustable-beds", "Page url is: " + url());
 
         PageHeader.openAccessoryByType("Sleeptracker");
         //Assert.assertTrue(title().equals("Beautyrest Sleeptracker | Sleep Monitor Technology | Beautyrest"), "Page title is: " + title());
@@ -66,14 +68,14 @@ public class Header_Navigation_Test extends BaseTest{
 
         PageHeader.openPromotionsPage();
         //Assert.assertTrue(title().equals(PromotionsPage.pageTitle), "Page title is: " + title());
-        Assert.assertEquals(url(), baseUrl + PromotionsPage.pageURL, "Page url is: " + url());
+        //Assert.assertEquals(url(), baseUrl + PromotionsPage.pageURL, "Page url is: " + url()); todo
 
         PageHeader.openBlogPage();
         //Assert.assertTrue(title().equals(BlogPage.pageTitle), "Page title is: " + title());
-        Assert.assertEquals(url(), baseUrl + BlogPage.pageURL, "Page url is: " + url());
+        //Assert.assertEquals(url(), baseUrl + BlogPage.pageURL, "Page url is: " + url()); todo
 
         PageHeader.openStoreLocator();
         //Assert.assertTrue(title().equals(StoreLocatorPage.pageTitle), "Page title is: " + title());
-        Assert.assertEquals(url(), baseUrl + StoreLocatorPage.pageURL, "Page url is: " + url());
+        Assert.assertEquals(url(), baseUrl + "/locator/", "Page url is: " + url());
     }
 }

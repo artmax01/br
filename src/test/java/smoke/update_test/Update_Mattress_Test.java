@@ -5,7 +5,6 @@ import entities.ItemEntity;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.CartPage;
-import pages.HomePage;
 import pages.PageHeader;
 import pages.ProductPage;
 import utils.BaseTest;
@@ -15,10 +14,11 @@ import utils.FileIO;
 import static com.codeborne.selenide.Configuration.baseUrl;
 import static com.codeborne.selenide.Selenide.open;
 import static pages.BasePage.closeWelcomeMessage;
+import static pages.BasePage.quit;
+
 
 public class Update_Mattress_Test extends BaseTest {
 
-    HomePage home = HomePage.Instance;
     PageHeader header = PageHeader.Instance;
     ProductPage product = ProductPage.Instance;
     CartPage cart = CartPage.Instance;
@@ -48,6 +48,8 @@ public class Update_Mattress_Test extends BaseTest {
         product.clickUpdateProduct();
 
         Assert.assertTrue(cart.itemDisplayedOnViewCartPage(newitem), "Failed to update product");
+
+        quit();
     }
 
     @Test
@@ -75,6 +77,8 @@ public class Update_Mattress_Test extends BaseTest {
         product.clickUpdateProduct();
 
         Assert.assertTrue(cart.itemDisplayedOnViewCartPage(newitem), "Failed to update product");
+
+        quit();
     }
 
     @Test
@@ -102,6 +106,8 @@ public class Update_Mattress_Test extends BaseTest {
         product.clickUpdateProduct();
 
         Assert.assertTrue(cart.itemDisplayedOnViewCartPage(newitem), "Failed to update product");
+
+        quit();
     }
 
     @Test
@@ -129,6 +135,8 @@ public class Update_Mattress_Test extends BaseTest {
         product.clickUpdateProduct();
 
         Assert.assertTrue(cart.itemDisplayedOnViewCartPage(newitem), "Failed to update product");
+
+        quit();
     }
 
     @Test
@@ -156,6 +164,8 @@ public class Update_Mattress_Test extends BaseTest {
         product.clickUpdateProduct();
 
         Assert.assertTrue(cart.itemDisplayedOnViewCartPage(newitem), "Failed to update product");
+
+        quit();
     }
 
     @Test
@@ -183,6 +193,8 @@ public class Update_Mattress_Test extends BaseTest {
         product.clickUpdateProduct();
 
         Assert.assertTrue(cart.itemDisplayedOnViewCartPage(newitem), "Failed to update product");
+
+        quit();
     }
 
     @Test
@@ -210,6 +222,8 @@ public class Update_Mattress_Test extends BaseTest {
         product.clickUpdateProduct();
 
         Assert.assertTrue(cart.itemDisplayedOnViewCartPage(newitem), "Failed to update product");
+
+        quit();
     }
 
     @Test
@@ -237,5 +251,7 @@ public class Update_Mattress_Test extends BaseTest {
         product.clickUpdateProduct();
 
         Assert.assertTrue(cart.itemDisplayedOnViewCartPage(newitem), "Failed to update product");
+
+        quit();
     }
 }

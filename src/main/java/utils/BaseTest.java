@@ -3,7 +3,11 @@ package utils;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.WebDriverRunner;
+import com.codeborne.selenide.impl.BasicAuthUrl;
 import org.monte.screenrecorder.ScreenRecorder;
+import org.openqa.selenium.Capabilities;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
 
@@ -31,7 +35,6 @@ public class BaseTest{
 
         ThreadLocal<ScreenRecorder> recorder = new ThreadLocal<ScreenRecorder>();
 
-        WebDriverRunner.getWebDriver().manage().window().maximize();
     }
 
     @BeforeTest
@@ -54,6 +57,13 @@ public class BaseTest{
         Configuration.savePageSource = false;
         Configuration.startMaximized = true;
 
+        ChromeOptions chromeOptions = new ChromeOptions();
+        chromeOptions.addArguments("--start-maximized");
+        chromeOptions.addArguments("--start-fullscreen");
+        chromeOptions.addArguments("--headless");
+        chromeOptions.addArguments("--window-size=1920,1080");
+
+        Configuration.browserCapabilities.setCapability(ChromeOptions.CAPABILITY, chromeOptions);
     }
 
     @AfterMethod

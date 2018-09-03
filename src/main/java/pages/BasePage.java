@@ -93,6 +93,11 @@ public class BasePage {
         }
     }
 
+    static void waitForElement(By by){
+        WebDriverWait wait = new WebDriverWait(WebDriverRunner.getWebDriver(), 90);
+        wait.until(ExpectedConditions.presenceOfElementLocated(by));
+    }
+
     public static void clickWithJS(WebElement element){
         JavascriptExecutor executor = (JavascriptExecutor)WebDriverRunner.getWebDriver();
         executor.executeScript("arguments[0].click();", element);

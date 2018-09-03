@@ -7,9 +7,7 @@ import org.openqa.selenium.By;
 import utils.FileIO;
 import utils.Tools;
 
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.$x;
-import static com.codeborne.selenide.Selenide.close;
+import static com.codeborne.selenide.Selenide.*;
 
 public class CheckoutPage extends BasePage{
 
@@ -38,6 +36,7 @@ public class CheckoutPage extends BasePage{
 
     billingSameOption = $(By.xpath(".//span[text()='Billing same as shipping']")),
     creditcardOption = $(By.xpath(".//span[text()='Credit Card']")),
+    creditcardSubmitOrder = $x(".//div[@class='payment-method payment-method-braintree _active']//button"),
     paypalOption = $(By.xpath(".//span[text()='PayPal (Braintree)']")),
     klarnaOption = $(By.cssSelector("#klarna_pay_over_time")),
     klarnaSubmitOrder = $x(".//input[@id='klarna_pay_over_time']/../..//button/span"),
@@ -94,12 +93,15 @@ public class CheckoutPage extends BasePage{
         setExpYear();
         setCVV();
 
-        if ( $(".message.message-error.error").isDisplayed()){
-            reporter.pass("Expected to recieve error message");
+        if (FileIO.getConfigProperty("EnvType").equals("Near_prod")){
+            reporter.pass("Expected to stop on near_prod");
+            reporter.closeTest();
+            close();
         }
 
-//        ElementsCollection buttons = getElements(By.cssSelector("button.action.primary.checkout"));
-//        buttons.filterBy(Condition.visible).exclude(Condition.disabled).first().click();
+        reporter.info("Clicking on \"Place Order\" button");
+        creditcardSubmitOrder.click();
+        waitForPageToLoad();
 
         return this;
     }
@@ -138,15 +140,8 @@ public class CheckoutPage extends BasePage{
         reporter.info("Set CVV to: 111");
         switchToFrame(By.xpath(".//iframe[@id='braintree-hosted-field-cvv']"));
         $("#cvv").sendKeys("111");
-
-        if (FileIO.getConfigProperty("EnvType").equals("Near_prod")){
-            reporter.pass("Expected to stop on near_prod");
-            reporter.closeTest();
-            close();
-        }
-
-        $("#cvv").pressEnter();
         switchToDefaultContent();
+        waitForPageToLoad();
     }
 
     public String getOrderNumber(){
@@ -175,8 +170,9 @@ public class CheckoutPage extends BasePage{
     }
 
     public boolean orderHasBeenPlaced(){
+        reporter.info("Checking success page for order number");
         waitForPageToLoad();
-        orderNumber.shouldBe(Condition.visible);
+        waitForElement((By.cssSelector("p.order-number span")));
         if (orderNumber.isDisplayed() && getOrderNumber() != null
                 && continueShoppingButton.isDisplayed()){
             return true;

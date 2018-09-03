@@ -42,8 +42,8 @@ public class BaseTest{
     public static void setup(){
         //Selenide configuration based on .properties file
 
-        Configuration.timeout = 30000;
-        Configuration.collectionsTimeout = 30000;
+        Configuration.timeout = 40000;
+        Configuration.collectionsTimeout = 40000;
         Configuration.browser = FileIO.getConfigProperty("Driver");
         Configuration.baseUrl = FileIO.getConfigProperty("baseUrl");
         Configuration.captureJavascriptErrors = true;

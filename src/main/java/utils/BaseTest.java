@@ -34,8 +34,7 @@ public class BaseTest{
 
     @BeforeTest
     public void beforeTest(){
-
-
+        WebDriverRunner.getWebDriver().manage().window().maximize();
     }
 
     @BeforeClass

@@ -4,7 +4,6 @@ import annotations.TestName;
 import entities.ItemEntity;
 import entities.UserEntity;
 import org.testng.Assert;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import pages.*;
 import pages.BasePage;
@@ -15,7 +14,6 @@ import utils.FileIO;
 import static com.codeborne.selenide.Configuration.baseUrl;
 import static com.codeborne.selenide.Selenide.open;
 import static pages.BasePage.closeWelcomeMessage;
-import static pages.BasePage.quit;
 
 
 public class Mattress_Full_Test extends BaseTest {
@@ -67,7 +65,6 @@ public class Mattress_Full_Test extends BaseTest {
         admin.clickOnCancelButton();
         Assert.assertTrue(admin.orderHasBeenCanceled(), "Failed to cancel order " + orderNumber);
 
-        quit();
     }
 
     @Test
@@ -110,7 +107,6 @@ public class Mattress_Full_Test extends BaseTest {
         admin.clickOnCancelButton();
         Assert.assertTrue(admin.orderHasBeenCanceled(), "Failed to cancel order " + orderNumber);
 
-        quit();
     }
 
     @Test
@@ -153,7 +149,6 @@ public class Mattress_Full_Test extends BaseTest {
         admin.clickOnCancelButton();
         Assert.assertTrue(admin.orderHasBeenCanceled(), "Failed to cancel order " + orderNumber);
 
-        quit();
     }
 
     @Test
@@ -196,7 +191,6 @@ public class Mattress_Full_Test extends BaseTest {
         admin.clickOnCancelButton();
         Assert.assertTrue(admin.orderHasBeenCanceled(), "Failed to cancel order " + orderNumber);
 
-        quit();
     }
 
     @Test
@@ -239,7 +233,6 @@ public class Mattress_Full_Test extends BaseTest {
         admin.clickOnCancelButton();
         Assert.assertTrue(admin.orderHasBeenCanceled(), "Failed to cancel order " + orderNumber);
 
-        quit();
     }
 
     @Test
@@ -282,7 +275,6 @@ public class Mattress_Full_Test extends BaseTest {
         admin.clickOnCancelButton();
         Assert.assertTrue(admin.orderHasBeenCanceled(), "Failed to cancel order " + orderNumber);
 
-        quit();
     }
 
     @Test
@@ -325,7 +317,6 @@ public class Mattress_Full_Test extends BaseTest {
         admin.clickOnCancelButton();
         Assert.assertTrue(admin.orderHasBeenCanceled(), "Failed to cancel order " + orderNumber);
 
-        quit();
     }
 
     @Test
@@ -368,7 +359,6 @@ public class Mattress_Full_Test extends BaseTest {
         admin.clickOnCancelButton();
         Assert.assertTrue(admin.orderHasBeenCanceled(), "Failed to cancel order " + orderNumber);
 
-        quit();
     }
 
 }

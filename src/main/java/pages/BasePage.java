@@ -101,11 +101,14 @@ public class BasePage {
     public static void closeWelcomeMessage(){
         waitForPageToLoad();
         reporter.info("Closing welcome message");
-        $(".close-button").click();
-//        if ($(".close-button").isDisplayed()) {
-//            $(".close-button").shouldBe(visible).click();
-//        }
-        waitForPageToLoad();
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        if ($(".close-button").isDisplayed()) {
+            $(".close-button").click();
+        }
     }
 
     public static void switchToFrame(By xpath) {
@@ -116,13 +119,6 @@ public class BasePage {
     public void switchToDefaultContent() {
         reporter.info("Switching to default content");
         WebDriverRunner.getWebDriver().switchTo().defaultContent();
-    }
-
-    public static void quit(){
-        Selenide.clearBrowserLocalStorage();
-        Selenide.clearBrowserCookies();
-        WebDriverRunner.getWebDriver().close();
-        WebDriverRunner.getWebDriver().quit();
     }
 
 }

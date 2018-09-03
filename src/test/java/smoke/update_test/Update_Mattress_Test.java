@@ -14,7 +14,6 @@ import utils.FileIO;
 import static com.codeborne.selenide.Configuration.baseUrl;
 import static com.codeborne.selenide.Selenide.open;
 import static pages.BasePage.closeWelcomeMessage;
-import static pages.BasePage.quit;
 
 
 public class Update_Mattress_Test extends BaseTest {
@@ -49,7 +48,6 @@ public class Update_Mattress_Test extends BaseTest {
 
         Assert.assertTrue(cart.itemDisplayedOnViewCartPage(newitem), "Failed to update product");
 
-        quit();
     }
 
     @Test
@@ -78,7 +76,6 @@ public class Update_Mattress_Test extends BaseTest {
 
         Assert.assertTrue(cart.itemDisplayedOnViewCartPage(newitem), "Failed to update product");
 
-        quit();
     }
 
     @Test
@@ -107,7 +104,6 @@ public class Update_Mattress_Test extends BaseTest {
 
         Assert.assertTrue(cart.itemDisplayedOnViewCartPage(newitem), "Failed to update product");
 
-        quit();
     }
 
     @Test
@@ -136,7 +132,6 @@ public class Update_Mattress_Test extends BaseTest {
 
         Assert.assertTrue(cart.itemDisplayedOnViewCartPage(newitem), "Failed to update product");
 
-        quit();
     }
 
     @Test
@@ -165,7 +160,6 @@ public class Update_Mattress_Test extends BaseTest {
 
         Assert.assertTrue(cart.itemDisplayedOnViewCartPage(newitem), "Failed to update product");
 
-        quit();
     }
 
     @Test
@@ -194,7 +188,6 @@ public class Update_Mattress_Test extends BaseTest {
 
         Assert.assertTrue(cart.itemDisplayedOnViewCartPage(newitem), "Failed to update product");
 
-        quit();
     }
 
     @Test
@@ -223,7 +216,6 @@ public class Update_Mattress_Test extends BaseTest {
 
         Assert.assertTrue(cart.itemDisplayedOnViewCartPage(newitem), "Failed to update product");
 
-        quit();
     }
 
     @Test
@@ -252,6 +244,5 @@ public class Update_Mattress_Test extends BaseTest {
 
         Assert.assertTrue(cart.itemDisplayedOnViewCartPage(newitem), "Failed to update product");
 
-        quit();
     }
 }

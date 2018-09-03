@@ -34,12 +34,12 @@ public class BaseTest{
 
     @BeforeTest
     public void beforeTest(){
-        Selenide.clearBrowserCookies();
+
+
     }
 
     @BeforeClass
-    public static void setup() throws IOException, AWTException {
-
+    public static void setup(){
         //Selenide configuration based on .properties file
 
         Configuration.timeout = 30000;
@@ -52,6 +52,7 @@ public class BaseTest{
         Configuration.screenshots = false;
         Configuration.savePageSource = false;
         Configuration.startMaximized = true;
+
     }
 
     @AfterMethod
@@ -59,6 +60,9 @@ public class BaseTest{
 
         // close reporter
         reporter.stopReporting(testResult);
+        Selenide.clearBrowserCookies();
+        WebDriverRunner.clearBrowserCache();
+        WebDriverRunner.closeWebDriver();
     }
 
     @AfterSuite(alwaysRun = true)

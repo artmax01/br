@@ -30,11 +30,13 @@ public class BaseTest{
         reporter.info("Starting driver");
 
         ThreadLocal<ScreenRecorder> recorder = new ThreadLocal<ScreenRecorder>();
+
+        WebDriverRunner.getWebDriver().manage().window().maximize();
     }
 
     @BeforeTest
     public void beforeTest(){
-        WebDriverRunner.getWebDriver().manage().window().maximize();
+
     }
 
     @BeforeClass

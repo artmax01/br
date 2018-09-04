@@ -52,7 +52,7 @@ public class DriverProvider {
         chromeOptions.addArguments("--kiosk");
         chromeOptions.addArguments("--start-maximized");
         chromeOptions.addArguments("--start-fullscreen");
-        chromeOptions.addArguments("--headless");
+        //chromeOptions.addArguments("--headless");
         chromeOptions.addArguments("--window-size=1920,1080");
 
         caps.setCapability(ChromeOptions.CAPABILITY, chromeOptions);

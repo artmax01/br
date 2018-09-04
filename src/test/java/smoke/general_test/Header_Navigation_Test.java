@@ -21,8 +21,6 @@ public class Header_Navigation_Test extends BaseTest{
 
     public static void HeaderNavigationTest(){
 
-        MattressPlp mattressPlp = MattressPlp.Instance;
-
         open(baseUrl);
         closeWelcomeMessage();
 

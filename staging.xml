@@ -22,6 +22,7 @@
             <class name="smoke.general_test.Klarna_Block_Test"/>
             <class name="smoke.general_test.Product_Filter_Test"/>
             <class name="smoke.general_test.Store_Locator_Test"/>
+            <class name="smoke.general_test.Reviews_Test"/>
 
             <class name="smoke.delete_test.Delete_Adjustable_Bases_From_Cart_Test"/>
             <class name="smoke.delete_test.Delete_Box_Spring_From_Cart_Test"/>
@@ -31,11 +32,18 @@
     </test> <!-- test -->
     <test name="Full" parallel="none">
         <classes>
+            <class name="smoke.full_test.Black_Calista_Mattress_Full_Test"/>
+            <class name="smoke.full_test.Black_Katarina_Mattress_Full_Test"/>
             <class name="smoke.full_test.Adjustable_Base_Full_Test"/>
+            <class name="smoke.full_test.Platinum_Atlascove_Mattress_Full_Test"/>
+            <class name="smoke.full_test.Platinum_Crestridge_Mattress_Full_Test"/>
+            <class name="smoke.full_test.Platinum_Springgrove_Mattress_Full_Test"/>
             <class name="smoke.full_test.Box_Spring_Black_Full_Test"/>
             <class name="smoke.full_test.Box_Spring_Platinum_Full_Test"/>
             <class name="smoke.full_test.Box_Spring_Silver_Full_Test"/>
-            <class name="smoke.full_test.Mattress_Full_Test"/>
+            <class name="smoke.full_test.Silver_Austinreef_Mattress_Full_Test"/>
+            <class name="smoke.full_test.Silver_Beachwood_Mattress_Full_Test"/>
+            <class name="smoke.full_test.Silver_Openseas_Mattress_Full_Test"/>
             <class name="smoke.full_test.Mattress_In_A_Box_Full_Test"/>
         </classes>
     </test>

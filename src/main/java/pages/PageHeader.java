@@ -2,6 +2,7 @@ package pages;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
+import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import entities.ItemEntity;
 import org.openqa.selenium.By;
@@ -68,9 +69,9 @@ public class PageHeader extends BasePage {
 
     public static AccessoryPage openAccessoryByType(String type){
         reporter.info("Opening " + type + " accessory page");
-        hoverTwoItems(products, accessories);
+        SelenideElement element = $x("//A[@class='nav-link active d-flex flex-column justify-content-center'][text()='" + type + "']");
+        hover2ItemsAndClick(products, accessories, element);
         // Sleeptracker, Pillows, Covers, Pet-Beds
-        getElement(xpath("//A[@class='nav-link active d-flex flex-column justify-content-center'][text()='" + type + "']")).click();
         return AccessoryPage.Instance;
     }
 

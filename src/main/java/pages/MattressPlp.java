@@ -273,4 +273,26 @@ public class MattressPlp extends BasePage{
         confirmSelectionRemoval.shouldBe(visible)
                 .click();
     }
+
+    public boolean chechFor5Reviews(){
+        reporter.info("Checking that 5 reviews are displayed");
+        ElementsCollection reviews = $$(".reviews-item");
+        reviews.first().scrollIntoView(true);
+        if (reviews.size() == 5){
+            return true;
+        }
+        return false;
+    }
+
+    public boolean clickOnSeeAllReviewsButton(){
+        reporter.info("Clicking on \"See All Reviews\" button");
+        $(".btn.btn-black-white.see-all-reviews").scrollIntoView(true)
+                .click();
+        ElementsCollection reviews = $$(".bv-content-item.bv-content-top-review.bv-content-review");
+        reviews.first().scrollIntoView(true);
+        if (reviews.size() > 5){
+            return true;
+        }
+        return false;
+    }
 }

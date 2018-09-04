@@ -48,7 +48,7 @@ public class Header_Navigation_Test extends BaseTest{
 
         PageHeader.openAdjustableBase();
         //Assert.assertTrue(title().equals(AdjustableBasePlp.pageTitle), "Page title is: " + title());
-        Assert.assertEquals(url(), baseUrl + "/adjustable-beds", "Page url is: " + url());
+        Assert.assertTrue(url().contains("/adjustable-beds"), "Page url is: " + url());
 
         PageHeader.openAccessoryByType("Sleeptracker");
         //Assert.assertTrue(title().equals("Beautyrest Sleeptracker | Sleep Monitor Technology | Beautyrest"), "Page title is: " + title());

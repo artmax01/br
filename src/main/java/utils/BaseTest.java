@@ -41,7 +41,7 @@ public class BaseTest{
         try {
             Configuration.timeout = 40000;
             Configuration.collectionsTimeout = 40000;
-            //Configuration.browser = FileIO.getConfigProperty("Driver");
+            Configuration.browser = FileIO.getConfigProperty("Driver");
             Configuration.baseUrl = FileIO.getConfigProperty("baseUrl");
             //Configuration.captureJavascriptErrors = true;
             //Configuration.driverManagerEnabled = true;
@@ -51,7 +51,7 @@ public class BaseTest{
             //Configuration.startMaximized = true;
             reporter.info("Driver creation");
             WebDriverRunner.setWebDriver(DriverProvider.getDriver());
-            //BasePage.driver.set(DriverProvider.getDriver());
+            BasePage.driver.set(DriverProvider.getDriver());
             //reporter.info("Driver created " + BasePage.driver.get().hashCode());
         }catch (Exception e){
             reporter.fail("Before test failure during Driver creation", e);
@@ -85,7 +85,11 @@ public class BaseTest{
         // close reporter
         reporter.stopReporting(testResult);
         //close driver
-        BasePage.driver().quit();
+        try {
+            BasePage.driver().quit();
+        }catch (Exception ignore){
+
+        }
         DriverProvider.closeDriver();
     }
 

@@ -10,7 +10,6 @@ import org.openqa.selenium.remote.BrowserType;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
-import javax.security.auth.login.Configuration;
 import java.net.MalformedURLException;
 import java.util.logging.Level;
 

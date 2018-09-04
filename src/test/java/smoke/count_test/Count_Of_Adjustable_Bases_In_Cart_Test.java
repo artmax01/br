@@ -5,6 +5,7 @@ import entities.ItemEntity;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.AdjustableBasePlp;
+import pages.HomePage;
 import pages.PageHeader;
 import utils.BaseTest;
 import utils.EntitiesFactory;

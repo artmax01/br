@@ -10,6 +10,7 @@ import org.openqa.selenium.remote.BrowserType;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
+import javax.security.auth.login.Configuration;
 import java.net.MalformedURLException;
 import java.util.logging.Level;
 
@@ -49,7 +50,7 @@ public class DriverProvider {
         caps.setCapability(CapabilityType.LOGGING_PREFS, logPrefs);
 
         ChromeOptions chromeOptions = new ChromeOptions();
-        //chromeOptions.addArguments("--kiosk");
+        chromeOptions.addArguments("--kiosk");
         chromeOptions.addArguments("--start-maximized");
         chromeOptions.addArguments("--start-fullscreen");
         chromeOptions.addArguments("--headless");

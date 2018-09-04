@@ -39,8 +39,19 @@ public class BaseTest{
 
         //init threadlocal driver
         try {
+            Configuration.timeout = 40000;
+            Configuration.collectionsTimeout = 40000;
+            //Configuration.browser = FileIO.getConfigProperty("Driver");
+            Configuration.baseUrl = FileIO.getConfigProperty("baseUrl");
+            //Configuration.captureJavascriptErrors = true;
+            //Configuration.driverManagerEnabled = true;
+            //Configuration.headless = true;
+            Configuration.screenshots = false;
+            Configuration.savePageSource = false;
+            //Configuration.startMaximized = true;
             reporter.info("Driver creation");
-            BasePage.driver.set(DriverProvider.getDriver());
+            WebDriverRunner.setWebDriver(DriverProvider.getDriver());
+            //BasePage.driver.set(DriverProvider.getDriver());
             //reporter.info("Driver created " + BasePage.driver.get().hashCode());
         }catch (Exception e){
             reporter.fail("Before test failure during Driver creation", e);
@@ -51,6 +62,10 @@ public class BaseTest{
 
         ThreadLocal<ScreenRecorder> recorder = new ThreadLocal<ScreenRecorder>();
 
+        //Selenide configuration based on .properties file
+
+
+
     }
 
     @BeforeTest
@@ -60,18 +75,7 @@ public class BaseTest{
 
     @BeforeClass
     public static void setup(){
-        //Selenide configuration based on .properties file
 
-        Configuration.timeout = 40000;
-        Configuration.collectionsTimeout = 40000;
-        Configuration.browser = FileIO.getConfigProperty("Driver");
-        Configuration.baseUrl = FileIO.getConfigProperty("baseUrl");
-        Configuration.captureJavascriptErrors = true;
-        //Configuration.driverManagerEnabled = true;
-        Configuration.headless = true;
-        Configuration.screenshots = false;
-        Configuration.savePageSource = false;
-        Configuration.startMaximized = true;
 
     }
 

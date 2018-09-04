@@ -21,10 +21,16 @@ public class BasePage {
 
     static ReporterManager reporter = ReporterManager.Instance;
 
+    public static ThreadLocal<WebDriver> driver = new ThreadLocal<WebDriver>();
+
     public final static String BASE_URL = (FileIO.getConfigProperty("baseUrl"));
 
     public static String pageURL = "";
     public static String pageTitle = "";
+
+    public static WebDriver driver(){
+        return driver.get();
+    }
 
     public void open() {
         reporter.info("Opening the page: " + "\"" + BASE_URL + pageURL + "\"");

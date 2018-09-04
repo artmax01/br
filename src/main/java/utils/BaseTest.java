@@ -7,13 +7,19 @@ import com.codeborne.selenide.impl.BasicAuthUrl;
 import org.monte.screenrecorder.ScreenRecorder;
 import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.logging.LogType;
+import org.openqa.selenium.logging.LoggingPreferences;
+import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
+import pages.BasePage;
 
 import java.awt.*;
 import java.io.IOException;
 import java.lang.reflect.Method;
+import java.util.logging.Level;
 
 
 public class BaseTest{
@@ -31,7 +37,17 @@ public class BaseTest{
         //set reporter to product sync
         ProductSync.reporter = reporter;
 
-        reporter.info("Starting driver");
+        //init threadlocal driver
+        try {
+            reporter.info("Driver creation");
+            BasePage.driver.set(DriverProvider.getDriver());
+            //reporter.info("Driver created " + BasePage.driver.get().hashCode());
+        }catch (Exception e){
+            reporter.fail("Before test failure during Driver creation", e);
+            reporter.stopReporting();
+            reporter.closeReporter();
+            Assert.fail();
+        }
 
         ThreadLocal<ScreenRecorder> recorder = new ThreadLocal<ScreenRecorder>();
 
@@ -51,19 +67,12 @@ public class BaseTest{
         Configuration.browser = FileIO.getConfigProperty("Driver");
         Configuration.baseUrl = FileIO.getConfigProperty("baseUrl");
         Configuration.captureJavascriptErrors = true;
-        Configuration.driverManagerEnabled = true;
+        //Configuration.driverManagerEnabled = true;
         Configuration.headless = true;
         Configuration.screenshots = false;
         Configuration.savePageSource = false;
         Configuration.startMaximized = true;
 
-        ChromeOptions chromeOptions = new ChromeOptions();
-        chromeOptions.addArguments("--start-maximized");
-        chromeOptions.addArguments("--start-fullscreen");
-        chromeOptions.addArguments("--headless");
-        chromeOptions.addArguments("--window-size=1920,1080");
-
-        Configuration.browserCapabilities.setCapability(ChromeOptions.CAPABILITY, chromeOptions);
     }
 
     @AfterMethod
@@ -71,9 +80,9 @@ public class BaseTest{
 
         // close reporter
         reporter.stopReporting(testResult);
-        Selenide.clearBrowserCookies();
-        WebDriverRunner.clearBrowserCache();
-        WebDriverRunner.closeWebDriver();
+        //close driver
+        BasePage.driver().quit();
+        DriverProvider.closeDriver();
     }
 
     @AfterSuite(alwaysRun = true)

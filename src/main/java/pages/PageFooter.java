@@ -13,6 +13,7 @@ public class PageFooter extends BasePage {
     /** UI Mapping **/
 
     static SelenideElement FAQ = $(By.partialLinkText("FAQs"));
+    static SelenideElement ProductRegistration = $(By.partialLinkText("Product Registration"));
 
 
     /** Page Methods **/
@@ -22,5 +23,12 @@ public class PageFooter extends BasePage {
         FAQ.scrollIntoView(true)
                 .click();
         return FaqPage.Instance;
+    }
+
+    public static ProductRegistrationPage openProductRegistration(){
+        reporter.info("Opening Product Registration Page");
+        ProductRegistration.scrollIntoView(true)
+                .click();
+        return ProductRegistrationPage.Instance;
     }
 }

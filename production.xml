@@ -1,0 +1,33 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="Suite" parallel="methods" thread-count="3">
+    <test name="Test">
+        <classes>
+            <class name="smoke.count_test.Count_Of_Adjustable_Bases_In_Cart_Test"/>
+            <class name="smoke.count_test.Count_Of_Black_Calista_Mattress_In_Cart_Test"/>
+            <class name="smoke.count_test.Count_Of_Black_Katarina_Mattress_In_Cart_Test"/>
+            <class name="smoke.count_test.Count_Of_Box_Spring_Black_In_Cart_Test"/>
+            <class name="smoke.count_test.Count_Of_Box_Spring_Platinum_In_Cart_Test"/>
+            <class name="smoke.count_test.Count_Of_Box_Spring_Silver_In_Cart_Test"/>
+            <class name="smoke.count_test.Count_Of_Mattress_In_A_Box_In_Cart_Test"/>
+            <class name="smoke.count_test.Count_Of_Platinum_Atlas_Cove_Mattress_In_Cart_Test"/>
+            <class name="smoke.count_test.Count_Of_Platinum_Crestridge_In_Cart_Test"/>
+            <class name="smoke.count_test.Count_Of_Platinum_Spring_Grove_In_Cart_Test"/>
+            <class name="smoke.count_test.Count_Of_Silver_Austin_Reef_Mattress_In_Cart_Test"/>
+            <class name="smoke.count_test.Count_Of_Silver_Beachwood_Mattress_In_Cart_Test"/>
+            <class name="smoke.count_test.Count_Of_Silver_Open_Seas_Mattress_In_Cart_Test"/>
+
+            <class name="smoke.general_test.Comparison_Test"/>
+            <class name="smoke.general_test.FAQ_Test"/>
+            <class name="smoke.general_test.Header_Navigation_Test"/>
+            <class name="smoke.general_test.Klarna_Block_Test"/>
+            <class name="smoke.general_test.Product_Filter_Test"/>
+            <class name="smoke.general_test.Store_Locator_Test"/>
+            <class name="smoke.general_test.Reviews_Test"/>
+
+            <class name="smoke.delete_test.Delete_Adjustable_Bases_From_Cart_Test"/>
+            <class name="smoke.delete_test.Delete_Box_Spring_From_Cart_Test"/>
+            <class name="smoke.delete_test.Delete_Mattress_From_Cart_Test"/>
+            <class name="smoke.delete_test.Delete_Mattress_In_A_Box_From_Cart_Test"/>
+        </classes>
+    </test> <!-- test -->
+</suite> <!-- suite -->

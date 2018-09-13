@@ -41,6 +41,7 @@ public class MattressPlp extends BasePage{
             priceStep_3000_or_more = $x(".//div[@class='Step']/span[contains(text(), '$3000')]/.."),
 
     compareButton = $("a.action.compare.primary.btn"),
+    xRemoveButton = $x(".//span[text()='x Remove']"),
     clearSelectionsButton = $x(".//span[text()='Clear Selections']"),
     confirmSelectionRemoval = $(".action-primary.action-accept"),
 
@@ -238,6 +239,27 @@ public class MattressPlp extends BasePage{
         for (int x=0; x<3; x++){
             button.get(x).scrollIntoView(true)
                     .click();
+        }
+    }
+
+    public static void removeProductsForComparisonFromPlp() {
+        reporter.info("Removing products for comparison by clicking Compare -");
+        ElementsCollection button = $$x(".//span[text()='Compare -']");
+        for (int x=0; x<3; x++){
+            button.get(x).scrollIntoView(true)
+                    .click();
+            confirmSelectionRemoval.shouldBe(visible)
+                    .click();
+        }
+    }
+
+    public static void removeProductsForComparisonFromCompareBlock() {
+        reporter.info("Removing products for comparison by clicking xRemove");
+        for (int x=0; x<3; x++){
+            xRemoveButton.click();
+            confirmSelectionRemoval.shouldBe(visible)
+                    .click();
+            waitForPageToLoad();
         }
     }
 

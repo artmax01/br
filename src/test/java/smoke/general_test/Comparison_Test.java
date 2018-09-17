@@ -71,7 +71,7 @@ public class Comparison_Test extends BaseTest{
         header.openMattressByType("Black");
         mattressPlp.addProductsForComparison();
         mattressPlp.clickOnClearSelectionsButton();
-        Assert.assertFalse(mattressPlp.compareBlockIsDisplayed(), "Failoed to clear comparison selections");
+        Assert.assertFalse(mattressPlp.compareBlockIsDisplayed(), "Failed to clear comparison selections");
 
         close();
     }

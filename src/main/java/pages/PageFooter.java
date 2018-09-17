@@ -14,6 +14,7 @@ public class PageFooter extends BasePage {
 
     static SelenideElement FAQ = $(By.partialLinkText("FAQs"));
     static SelenideElement ProductRegistration = $(By.partialLinkText("Product Registration"));
+    static SelenideElement ContactUs = $(By.partialLinkText("Contact Us"));
 
 
     /** Page Methods **/
@@ -30,5 +31,11 @@ public class PageFooter extends BasePage {
         ProductRegistration.scrollIntoView(true)
                 .click();
         return ProductRegistrationPage.Instance;
+    }
+
+    public static ContactUsPage openContactUs() {
+        reporter.info("Opening Contact Us Page");
+        ContactUs.scrollIntoView(true).click();
+        return ContactUsPage.Instance;
     }
 }

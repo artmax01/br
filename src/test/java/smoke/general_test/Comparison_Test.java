@@ -13,7 +13,6 @@ import static com.codeborne.selenide.Configuration.baseUrl;
 import static com.codeborne.selenide.Selenide.close;
 import static com.codeborne.selenide.Selenide.open;
 import static pages.BasePage.closeWelcomeMessage;
-import static pages.BasePage.waitForPageToLoad;
 
 public class Comparison_Test extends BaseTest{
 
@@ -73,42 +72,6 @@ public class Comparison_Test extends BaseTest{
         mattressPlp.addProductsForComparison();
         mattressPlp.clickOnClearSelectionsButton();
         Assert.assertFalse(mattressPlp.compareBlockIsDisplayed(), "Failed to clear comparison selections");
-
-        close();
-    }
-
-
-    @Test
-    @TestName (name = "Compare- button on PLP functionality test")
-
-    public void checkRemoveComparisonPlpButton(){
-
-        open(baseUrl);
-        closeWelcomeMessage();
-
-        header.openMattressByType("Black");
-        mattressPlp.addProductsForComparison();
-        mattressPlp.removeProductsForComparisonFromPlp();
-        waitForPageToLoad();
-        Assert.assertFalse(mattressPlp.compareBlockIsDisplayed(), "Failed to remove product comparison selections");
-
-        close();
-    }
-
-
-    @Test
-    @TestName (name = "x Remove button on compare block functionality test")
-
-    public void checkRemoveComparisonBlockButton(){
-
-        open(baseUrl);
-        closeWelcomeMessage();
-
-        header.openMattressByType("Black");
-        mattressPlp.addProductsForComparison();
-        mattressPlp.removeProductsForComparisonFromCompareBlock();
-        waitForPageToLoad();
-        Assert.assertFalse(mattressPlp.compareBlockIsDisplayed(), "Failed to remove product comparison selections");
 
         close();
     }

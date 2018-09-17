@@ -45,7 +45,7 @@ public class BaseTest{
             Configuration.baseUrl = FileIO.getConfigProperty("baseUrl");
             //Configuration.captureJavascriptErrors = true;
             //Configuration.driverManagerEnabled = true;
-            //Configuration.headless = true;
+            Configuration.headless = false;
             Configuration.screenshots = false;
             Configuration.savePageSource = false;
             //Configuration.startMaximized = true;

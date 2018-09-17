@@ -45,7 +45,10 @@ public class Mattress_In_A_Box_Full_Test extends BaseTest {
 
         header.clickOnViewCheckoutPage();
         checkout.populateShippingFields(user)
-                .payWithCreditCard();
+                .svitchStep();
+
+        checkout.payWithCreditCard();
+
         Assert.assertTrue(checkout.orderHasBeenPlaced(), "Failed to place order");
 
         String orderNumber = checkout.getOrderNumber();

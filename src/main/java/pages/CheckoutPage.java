@@ -41,6 +41,8 @@ public class CheckoutPage extends BasePage{
     klarnaOption = $(By.cssSelector("#klarna_pay_over_time")),
     klarnaSubmitOrder = $x(".//input[@id='klarna_pay_over_time']/../..//button/span"),
 
+    firstStep = $(By.xpath(".//*[@id='checkout']/div[4]/ol[1]/li[1]/span")),
+
     orderNumber = $("p.order-number span"),
     continueShoppingButton = $("a.action.primary.continue");
 
@@ -239,5 +241,14 @@ public class CheckoutPage extends BasePage{
         reporter.info("Clicking on \"Continue\" button");
         continueButton.click();
         return this;
+    }
+
+    public void svitchStep(){
+        reporter.info("Go to the first step");
+        waitForPageToLoad();
+        firstStep.click();
+
+        waitForPageToLoad();
+        continueButton.click();
     }
 }

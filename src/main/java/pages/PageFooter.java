@@ -4,6 +4,7 @@ import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.Selenide.$;
+import static pages.WarrantyPage.Instance;
 
 public class PageFooter extends BasePage {
 
@@ -12,9 +13,11 @@ public class PageFooter extends BasePage {
 
     /** UI Mapping **/
 
-    static SelenideElement FAQ = $(By.partialLinkText("FAQs"));
-    static SelenideElement ProductRegistration = $(By.partialLinkText("Product Registration"));
-    static SelenideElement ContactUs = $(By.partialLinkText("Contact Us"));
+    static SelenideElement
+            FAQ = $(By.partialLinkText("FAQs")),
+            ProductRegistration = $(By.partialLinkText("Product Registration")),
+            ContactUs = $(By.partialLinkText("Contact Us")),
+            Warranties = $(By.partialLinkText("Warranties"));
 
 
     /** Page Methods **/
@@ -37,5 +40,12 @@ public class PageFooter extends BasePage {
         reporter.info("Opening Contact Us Page");
         ContactUs.scrollIntoView(true).click();
         return ContactUsPage.Instance;
+    }
+
+    public static WarrantyPage openWarranty(){
+        reporter.info("Opening Warranty Page");
+        Warranties.scrollIntoView(true)
+                .click();
+        return WarrantyPage.Instance;
     }
 }

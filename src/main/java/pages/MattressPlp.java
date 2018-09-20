@@ -237,8 +237,8 @@ public class MattressPlp extends BasePage{
         reporter.info("Adding products for comparison");
         ElementsCollection button = $$x(".//span[text()='Compare +']");
         for (int x=0; x<3; x++){
-            button.get(x).scrollIntoView(true)
-                    .click();
+            button.get(x).scrollIntoView(true);
+            button.get(x+3).click();
         }
     }
 

@@ -52,7 +52,7 @@ public class Comparison_Test extends BaseTest{
         open(baseUrl);
         closeWelcomeMessage();
 
-        header.openMattressByType("Black");
+        header.openMattressesPlp();
         mattressPlp.addProductsForComparison();
         Assert.assertTrue(mattressPlp.compareBlockIsDisplayed(), "Failed to locate Compare Block");
 
@@ -68,7 +68,7 @@ public class Comparison_Test extends BaseTest{
         open(baseUrl);
         closeWelcomeMessage();
 
-        header.openMattressByType("Black");
+        header.openMattressesPlp();
         mattressPlp.addProductsForComparison();
         mattressPlp.clickOnClearSelectionsButton();
         Assert.assertFalse(mattressPlp.compareBlockIsDisplayed(), "Failed to clear comparison selections");
@@ -85,7 +85,7 @@ public class Comparison_Test extends BaseTest{
         open(baseUrl);
         closeWelcomeMessage();
 
-        header.openMattressByType("Black");
+        header.openMattressesPlp();
         mattressPlp.addProductsForComparison();
         mattressPlp.clickOnCompareButton();
         Assert.assertTrue(compare.checkComparisonTable(), "Failed to locate comparison table");

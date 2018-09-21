@@ -25,7 +25,7 @@ public class Cross_Sell_Test extends BaseTest {
 
     ElementsCollection
             sizeButtonsCollection = $$x("//*[@role='option']"),
-            secondOptionButtonsCollection = $$x("//p[@class='swatch-option text'] and //p[@class='swatch-option text active']");
+            secondOptionButtonsCollection = $$x("//*[@class='swatch-option text'] and //*[@class='swatch-option text selected']");
 
     @Test
     @TestName (name = "Cross Sell Price and Size Test")
@@ -37,7 +37,7 @@ public class Cross_Sell_Test extends BaseTest {
         closeWelcomeMessage();
         header.openMattressesPlp()
                 .OpenProductPage("CALISTA");
-        for (int x=sizeButtonsCollection.size()-1; x>-1; x--){
+        for (int x=1; x<4; x++){
             sizeButtonsCollection.get(x).click();
             pdpMattressSize = sizeButtonsCollection.get(x).getText();
             pdpMattressPrice = product.productPriceText.getText();

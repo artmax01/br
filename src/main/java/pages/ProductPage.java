@@ -16,21 +16,21 @@ public class ProductPage extends BasePage{
 
     public static SelenideElement
     sizeByDefault = $(By.xpath("//div[@aria-checked='true' and @aria-describedby='option-label-bed_size-177']")),
-    selectedSize = $x("//*[@class='swatch-option text selected']"),
-    selectedSecondOption = $x("//*[@class='swatch-option text active']"),
+    selectedSize = $x("//*[@class='swatch-opt']/div[1]//div[@class='swatch-option text selected']"),
+    selectedSecondOption = $x("//*[@class='swatch-opt']/div[2]//div[@class='swatch-option text selected']"),
     klarnaBlock = $(".klarna-placement"),
     productPriceText = $x("//*[@class='product-info-price']/div/span/span/span"),
 
     crossSellModal = $(".xs-modal__sold"),
-    xsCloseButton = $x("/html/body/div[4]/aside[2]/div[2]/header/button"),
+    xsCloseButton = $$x(".//*[@class='action-close']").get(1),
     xsProductNameText = $(".__title m-0"),
     xsProductSizeText = $x("//*[@class='xs-modal__sold']/div/div/div/div/p[2]"),
     xsProductPriceText = $x("//*[@class='xs-modal__sold']/div/div/div/p/span/span/span"),
     xsCheckoutNowButton = $x(".//a[contains(text(), 'Checkout Now ')]"),
     xsAddBoxSpringsToCartButton = $x("//*[@id='modal-content-38']/div/div/div/div[2]/div[1]/div[2]/button"),
     xsAddSmartMotionToCartButton = $x("//*[@id='modal-content-38']/div/div/div/div[2]/div[2]/div[2]/button"),
-    xsBoxSpringSizeText = $x("//*[@class='xs-modal']/div[2]/div[1]/p[2]"),
-    xsSmartMotionSizeText = $x("//*[@class='xs-modal']/div[2]/div[2]/p[2]");
+    xsBoxSpringSizeText = $$x(".//*[@class='__option text-muted font-small mb-0']").get(0),
+    xsSmartMotionSizeText = $$x(".//*[@class='__option text-muted font-small mb-0']").get(1);
 
     /** Page Methods **/
 
@@ -43,8 +43,9 @@ public class ProductPage extends BasePage{
 
     public static void SelectProductOption(String option){
         reporter.info("Selecting option: " + option);
-        getElement(By.xpath(".//a[text()='" + option + "']")).click();
-        waitForPageToLoad();
+        if(!selectedSecondOption.getText().equalsIgnoreCase(option))
+        {getElement(By.xpath(".//div[text()='" + option + "']")).click();
+        waitForPageToLoad();}
     }
 
     public static CartPage clickAddToCart() {

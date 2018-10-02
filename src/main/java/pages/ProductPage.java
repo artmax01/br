@@ -1,7 +1,6 @@
 package pages;
 
 import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
 
@@ -26,7 +25,7 @@ public class ProductPage extends BasePage{
     xsProductNameText = $(".__title m-0"),
     xsProductSizeText = $x("//*[@class='xs-modal__sold']/div/div/div/div/p[2]"),
     xsProductPriceText = $x("//*[@class='xs-modal__sold']/div/div/div/p/span/span/span"),
-    xsCheckoutNowButton = $x(".//a[contains(text(), 'Checkout Now ')]"),
+    xsViewCartButton = $x(".//a[contains(text(), ' View Cart ')]"),
     xsAddBoxSpringsToCartButton = $x("//*[@id='modal-content-38']/div/div/div/div[2]/div[1]/div[2]/button"),
     xsAddSmartMotionToCartButton = $x("//*[@id='modal-content-38']/div/div/div/div[2]/div[2]/div[2]/button"),
     xsBoxSpringSizeText = $$x(".//*[@class='__option text-muted font-small mb-0']").get(0),
@@ -36,6 +35,10 @@ public class ProductPage extends BasePage{
 
     public static void SelectSize(String size){
         reporter.info("Selecting product size: " + size);
+        waitForPageToLoad();
+        waitForElement(By.xpath("//div[@aria-checked='true' and @aria-describedby='option-label-bed_size-177']"));
+        if (!sizeByDefault.isDisplayed()){driver().navigate().refresh();}
+
         if ( !sizeByDefault.getText().toLowerCase().contains(size.toLowerCase()) ){
             $(By.xpath(".//div[@role='option' and text()='" + size + "']")).click();
         }
@@ -60,7 +63,7 @@ public class ProductPage extends BasePage{
         }
         if (crossSellModal.isDisplayed()){
             reporter.info("closing popup");
-            xsCheckoutNowButton.click();
+            xsViewCartButton.click();
         }
         return CartPage.Instance;
     }

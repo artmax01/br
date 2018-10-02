@@ -1,6 +1,7 @@
 package pages;
 
-import com.codeborne.selenide.*;
+import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.Selenide;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -13,7 +14,6 @@ import utils.FileIO;
 import utils.ReporterManager;
 import utils.Tools;
 
-import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.$;
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfElementLocated;
 
@@ -43,11 +43,11 @@ public class BasePage {
         try
         {
             String mouseOverScript = "if(document.createEvent){var evObj = document.createEvent('MouseEvents');evObj.initEvent('mouseover',true, false); arguments[0].dispatchEvent(evObj);} else if(document.createEventObject) { arguments[0].fireEvent('onmouseover');}";
-            ((JavascriptExecutor) WebDriverRunner.getWebDriver()).executeScript(mouseOverScript,a);
+            ((JavascriptExecutor) driver()).executeScript(mouseOverScript,a);
             Thread.sleep(1000);
-            ((JavascriptExecutor) WebDriverRunner.getWebDriver()).executeScript(mouseOverScript,b);
+            ((JavascriptExecutor) driver()).executeScript(mouseOverScript,b);
             Thread.sleep(1000);
-            ((JavascriptExecutor)WebDriverRunner.getWebDriver()).executeScript("arguments[0].click();",c);
+            ((JavascriptExecutor) driver()).executeScript("arguments[0].click();",c);
 
         } catch (Exception e) {
             // TODO: handle exception
@@ -58,9 +58,9 @@ public class BasePage {
         try
         {
             String mouseOverScript = "if(document.createEvent){var evObj = document.createEvent('MouseEvents');evObj.initEvent('mouseover',true, false); arguments[0].dispatchEvent(evObj);} else if(document.createEventObject) { arguments[0].fireEvent('onmouseover');}";
-            ((JavascriptExecutor) WebDriverRunner.getWebDriver()).executeScript(mouseOverScript,a);
+            ((JavascriptExecutor) driver()).executeScript(mouseOverScript,a);
             Thread.sleep(1000);
-            ((JavascriptExecutor) WebDriverRunner.getWebDriver()).executeScript(mouseOverScript,b);
+            ((JavascriptExecutor) driver()).executeScript(mouseOverScript,b);
             Thread.sleep(1000);
 
         } catch (Exception e) {
@@ -79,9 +79,9 @@ public class BasePage {
         waitForPageToLoad();
         try {
             //synchronize();
-            (new WebDriverWait(WebDriverRunner.getWebDriver(), timeoutForFindElement))
+            (new WebDriverWait(driver(), timeoutForFindElement))
                     .until(visibilityOfElementLocated(element));
-            return WebDriverRunner.getWebDriver().findElement(element);
+            return driver().findElement(element);
         } catch (Exception e) {
             reporter.fail(Tools.getStackTrace(e));
             throw new RuntimeException("Failure finding element");
@@ -92,7 +92,7 @@ public class BasePage {
         ExpectedCondition<Boolean> expectation = driver -> ((JavascriptExecutor) driver).executeScript("return document.readyState").toString().equals("complete");
         try {
             Thread.sleep(2000);
-            WebDriverWait wait = new WebDriverWait(WebDriverRunner.getWebDriver(), 30);
+            WebDriverWait wait = new WebDriverWait(driver(), 30);
             wait.until(expectation);
         } catch (Throwable error) {
             Assert.fail("Timeout waiting for Page Load Request to complete.");
@@ -100,12 +100,12 @@ public class BasePage {
     }
 
     static void waitForElement(By by){
-        WebDriverWait wait = new WebDriverWait(WebDriverRunner.getWebDriver(), 90);
+        WebDriverWait wait = new WebDriverWait(driver(), 90);
         wait.until(ExpectedConditions.presenceOfElementLocated(by));
     }
 
     public static void clickWithJS(WebElement element){
-        JavascriptExecutor executor = (JavascriptExecutor)WebDriverRunner.getWebDriver();
+        JavascriptExecutor executor = (JavascriptExecutor)driver();
         executor.executeScript("arguments[0].click();", element);
     }
 
@@ -124,12 +124,12 @@ public class BasePage {
 
     public static void switchToFrame(By xpath) {
         reporter.info("Switching to frame: " + xpath.toString());
-        WebDriverRunner.getWebDriver().switchTo().frame(findElement(xpath));
+        driver().switchTo().frame(findElement(xpath));
     }
 
     public void switchToDefaultContent() {
         reporter.info("Switching to default content");
-        WebDriverRunner.getWebDriver().switchTo().defaultContent();
+        driver().switchTo().defaultContent();
     }
 
 }

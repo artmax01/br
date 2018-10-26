@@ -2,7 +2,6 @@ package pages;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
-import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import entities.ItemEntity;
 import org.openqa.selenium.By;
@@ -229,6 +228,7 @@ public class PageHeader extends BasePage {
     public int getCountOfProductsOnMinicartIcon() {
         reporter.info("Getting count of goods from minicart icon");
         waitForPageToLoad();
+        waitForElement(By.cssSelector("span.counter-number"));
         String[] result = $(".counter.qty").getText().split("\n");
         reporter.info("Items on cart icon are equal to " + Integer.valueOf(result[0]));
         return Integer.valueOf(result[0]);

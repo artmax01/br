@@ -1,7 +1,7 @@
 <suite name="Suite" parallel="methods" thread-count="5">
     <test name="Test">
         <classes>
-            <class name = "smoke.general_test.Header_Navigation_Test" />
+            <class name = "smoke.count_test.Count_Of_Black_Calista_Mattress_In_Cart_Test" />
         </classes>
     </test> <!-- test -->
 </suite> <!-- suite -->

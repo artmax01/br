@@ -44,7 +44,8 @@ public class PageHeader extends BasePage {
     
     By minicartItems = By.cssSelector("div.product-item-details");
     By minicartItemName = By.cssSelector("strong.product-item-name");
-    By minicartQty = xpath(".//input[@disabled='disabled']");
+    By minicartQty = By.xpath(".//input[@disabled='disabled']");
+    By minicartIconQty = By.cssSelector("span.counter-number");
     By minicartPrice = By.cssSelector("span.price");
     By minicartItemDetails = By.cssSelector("dl.product.options.list span");
     By deleteItemFromMinicartButton = By.cssSelector("a.action.delete");
@@ -228,7 +229,8 @@ public class PageHeader extends BasePage {
     public int getCountOfProductsOnMinicartIcon() {
         reporter.info("Getting count of goods from minicart icon");
         waitForPageToLoad();
-        waitForElement(By.cssSelector("span.counter-number"));
+        waitForElement(minicartIconQty);
+        waitUntilElementContainsText(minicartIconQty);
         String[] result = $(".counter.qty").getText().split("\n");
         reporter.info("Items on cart icon are equal to " + Integer.valueOf(result[0]));
         return Integer.valueOf(result[0]);

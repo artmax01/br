@@ -104,6 +104,12 @@ public class BasePage {
         wait.until(ExpectedConditions.presenceOfElementLocated(by));
     }
 
+    static void waitUntilElementContainsText(By by){
+        WebDriverWait wait = new WebDriverWait(driver(), 30);
+        wait.until((ExpectedCondition<Boolean>) driver -> driver.findElement(by).getText().length() != 0);
+    }
+
+
     public static void clickWithJS(WebElement element){
         JavascriptExecutor executor = (JavascriptExecutor)driver();
         executor.executeScript("arguments[0].click();", element);

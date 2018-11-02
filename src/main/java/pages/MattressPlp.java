@@ -279,6 +279,7 @@ public class MattressPlp extends BasePage{
     }
 
     public static boolean compareBlockIsDisplayed() {
+        waitForPageToLoad();
         reporter.info("Chenking presence of Comparison Block");
         if ( $("#compare-items").isDisplayed() && compareButton.isDisplayed()
                 && clearSelectionsButton.isDisplayed()){

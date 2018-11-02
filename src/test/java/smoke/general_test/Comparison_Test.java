@@ -86,7 +86,6 @@ public class Comparison_Test extends BaseTest{
         header.openMattressesPlp();
         mattressPlp.addProductsForComparison();
         mattressPlp.removeProductsForComparisonFromPlp();
-        waitForPageToLoad();
         Assert.assertFalse(mattressPlp.compareBlockIsDisplayed(), "Failed to remove product comparison selections");
 
         close();
@@ -104,7 +103,6 @@ public class Comparison_Test extends BaseTest{
         header.openMattressesPlp();
         mattressPlp.addProductsForComparison();
         mattressPlp.removeProductsForComparisonFromCompareBlock();
-        waitForPageToLoad();
         Assert.assertFalse(mattressPlp.compareBlockIsDisplayed(), "Failed to remove product comparison selections");
 
         close();

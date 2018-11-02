@@ -68,6 +68,18 @@ public class BasePage {
         }
     }
 
+    public static WebElement scrollToElement(WebElement element){
+        waitForPageToLoad();
+        ((JavascriptExecutor) driver()).executeScript("arguments[0].focus(); window.scroll(0, window.scrollY+=300)", element);
+        return element;
+    }
+
+    public static WebElement scrollIntoView(WebElement element){
+        waitForPageToLoad();
+        ((JavascriptExecutor) driver()).executeScript("arguments[0].scrollIntoView(); window.scroll(0, window.scrollY-=300)", element);
+        return element;
+    }
+
     public static AdminPage openAdminPage(){
         reporter.info("Opening Admin page");
         Selenide.open("https://bettersleep:stg-tsleep-@45@staging.tomorrowsleep.com/office45w45/");

@@ -6,7 +6,6 @@ import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.Condition.attribute;
-import static com.codeborne.selenide.Condition.disabled;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.*;
 
@@ -236,18 +235,19 @@ public class MattressPlp extends BasePage{
     public static void addProductsForComparison() {
         reporter.info("Adding products for comparison");
         ElementsCollection button = $$x(".//span[text()='Compare +']");
+        scrollToElement(button.first());
         for (int x=0; x<3; x++){
-            button.get(x).scrollIntoView(true);
-            button.get(x+3).click();
+            button.get(x).click();
         }
     }
 
     public static void removeProductsForComparisonFromPlp() {
         reporter.info("Removing products for comparison by clicking Compare -");
         ElementsCollection button = $$x(".//span[text()='Compare -']");
+        button.filterBy(Condition.visible);
+        scrollToElement(button.first());
         for (int x=0; x<3; x++){
-            button.get(x).scrollIntoView(true);
-            button.get(x+3).click();
+            button.get(x).click();
             confirmSelectionRemoval.shouldBe(visible)
                     .click();
         }
@@ -266,8 +266,7 @@ public class MattressPlp extends BasePage{
     public static void addOneProductForComparison(){
         waitForPageToLoad();
         reporter.info("Adding product for comparison");
-        $x(".//span[text()='Compare +']")
-                .scrollIntoView(true)
+        scrollIntoView($x(".//span[text()='Compare +']"))
                 .click();
     }
 

@@ -86,7 +86,8 @@ public class CheckoutPage extends BasePage{
         waitForPageToLoad();
 
         reporter.info("Selecting Credit Card payment option");
-        creditcardOption.scrollIntoView(true);
+        //creditcardOption.scrollIntoView(true);
+        scrollToElement(creditcardOption);
         creditcardOption.shouldBe(Condition.visible)
             .click();
 

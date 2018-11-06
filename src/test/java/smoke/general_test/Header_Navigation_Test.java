@@ -50,19 +50,23 @@ public class Header_Navigation_Test extends BaseTest{
 
         PageHeader.openAccessoryByType("Sleeptracker");
         //Assert.assertTrue(title().equals("Beautyrest Sleeptracker | Sleep Monitor Technology | Beautyrest"), "Page title is: " + title());
-        Assert.assertEquals(url(), baseUrl + "/sleeptracker", "Page url is: " + url());
+        Assert.assertTrue(url().contains("/sleeptracker"), "Page url is: " + url());
+        // baseUrl + "/sleeptracker", "Page url is: " + url());
 
         PageHeader.openAccessoryByType("Pillows");
         //Assert.assertTrue(title().equals("Pillows | Beautyrest"), "Page title is: " + title());
-        Assert.assertEquals(url(), baseUrl + "/pillows", "Page url is: " + url());
+        Assert.assertTrue(url().contains("/pillows"), "Page url is: " + url());
+        //assertEquals(url(), baseUrl + "/pillows", "Page url is: " + url());
 
         PageHeader.openAccessoryByType("Covers");
         //Assert.assertTrue(title().equals("Covers | Beautyrest"), "Page title is: " + title());
-        Assert.assertEquals(url(), baseUrl + "/covers", "Page url is: " + url());
+        Assert.assertTrue(url().contains("/covers"), "Page url is: " + url());
+        //assertEquals(url(), baseUrl + "/covers", "Page url is: " + url());
 
-        PageHeader.openAccessoryByType("Pet-Beds");
+        PageHeader.openAccessoryByType("Pet Beds");
         //Assert.assertTrue(title().equals("Memory Foam Pet Beds | Beautyrest Pet Beds | Beautyrest"), "Page title is: " + title());
-        Assert.assertEquals(url(), baseUrl + "/pet-beds", "Page url is: " + url());
+        Assert.assertTrue(url().contains("/pet-beds"), "Page url is: " + url());
+        //assertEquals(url(), baseUrl + "/pet-beds", "Page url is: " + url());
 
         PageHeader.openPromotionsPage();
         //Assert.assertTrue(title().equals(PromotionsPage.pageTitle), "Page title is: " + title());
@@ -74,6 +78,7 @@ public class Header_Navigation_Test extends BaseTest{
 
         PageHeader.openStoreLocator();
         //Assert.assertTrue(title().equals(StoreLocatorPage.pageTitle), "Page title is: " + title());
-        Assert.assertEquals(url(), baseUrl + "/locator/", "Page url is: " + url());
+        Assert.assertTrue(url().contains("/locator/"), "Page url is: " + url());
+        //assertEquals(url(), baseUrl + "/locator/", "Page url is: " + url());
     }
 }

@@ -46,9 +46,14 @@ public class ProductPage extends BasePage{
 
     public static void SelectProductOption(String option){
         reporter.info("Selecting option: " + option);
+//<<<<<<< Updated upstream
         if(!selectedSecondOption.getText().equalsIgnoreCase(option))
         {getElement(By.xpath(".//div[text()='" + option + "']")).click();
         waitForPageToLoad();}
+//=======
+//        getElement(By.xpath(".//div[@role='option' and text()='" + option + "']")).click(); //(".//a[text()='" + option + "']")).click();
+//       waitForPageToLoad();
+//>>>>>>> Stashed changes
     }
 
     public static CartPage clickAddToCart() {

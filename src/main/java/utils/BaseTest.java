@@ -1,25 +1,14 @@
 package utils;
 
 import com.codeborne.selenide.Configuration;
-import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.WebDriverRunner;
-import com.codeborne.selenide.impl.BasicAuthUrl;
 import org.monte.screenrecorder.ScreenRecorder;
-import org.openqa.selenium.Capabilities;
-import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.logging.LogType;
-import org.openqa.selenium.logging.LoggingPreferences;
-import org.openqa.selenium.remote.CapabilityType;
-import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
 import pages.BasePage;
 
-import java.awt.*;
-import java.io.IOException;
 import java.lang.reflect.Method;
-import java.util.logging.Level;
 
 
 public class BaseTest{
@@ -59,13 +48,6 @@ public class BaseTest{
             reporter.closeReporter();
             Assert.fail();
         }
-
-        ThreadLocal<ScreenRecorder> recorder = new ThreadLocal<ScreenRecorder>();
-
-        //Selenide configuration based on .properties file
-
-
-
     }
 
     @BeforeTest

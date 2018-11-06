@@ -68,6 +68,18 @@ public class BasePage {
         }
     }
 
+    public static WebElement scrollToElement(WebElement element){
+        waitForPageToLoad();
+        ((JavascriptExecutor) driver()).executeScript("arguments[0].focus(); window.scroll(0, window.scrollY+=300)", element);
+        return element;
+    }
+
+    public static WebElement scrollIntoView(WebElement element){
+        waitForPageToLoad();
+        ((JavascriptExecutor) driver()).executeScript("arguments[0].scrollIntoView(); window.scroll(0, window.scrollY-=300)", element);
+        return element;
+    }
+
     public static AdminPage openAdminPage(){
         reporter.info("Opening Admin page");
         Selenide.open("https://bettersleep:stg-tsleep-@45@staging.tomorrowsleep.com/office45w45/");
@@ -103,6 +115,12 @@ public class BasePage {
         WebDriverWait wait = new WebDriverWait(driver(), 90);
         wait.until(ExpectedConditions.presenceOfElementLocated(by));
     }
+
+    static void waitUntilElementContainsText(By by){
+        WebDriverWait wait = new WebDriverWait(driver(), 30);
+        wait.until((ExpectedCondition<Boolean>) driver -> driver.findElement(by).getText().length() != 0);
+    }
+
 
     public static void clickWithJS(WebElement element){
         JavascriptExecutor executor = (JavascriptExecutor)driver();

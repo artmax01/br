@@ -82,7 +82,7 @@ public class BasePage {
 
     public static AdminPage openAdminPage(){
         reporter.info("Opening Admin page");
-        Selenide.open("https://bettersleep:stg-tsleep-@45@staging.tomorrowsleep.com/office45w45/");
+        Selenide.open("https://bettersleep:stg-tsleep-@45@staging.tomorrowsleep.com/office45w45");
         return AdminPage.Instance;
     }
 

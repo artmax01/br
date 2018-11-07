@@ -4,6 +4,7 @@ import com.codeborne.selenide.SelenideElement;
 import entities.UserEntity;
 import org.openqa.selenium.By;
 
+import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 
 public class ContactUsPage extends BasePage {
@@ -22,19 +23,11 @@ public class ContactUsPage extends BasePage {
             lastNameField = $(By.xpath("//input[@placeholder='Last Name*']")),
             phoneField = $(By.xpath("//input[@placeholder='Phone*']")),
             commentField = $(By.xpath("//textarea[@name='loffield_c519']")),
-            submitButton = $(By.xpath("//button[@class='formbuilder-button button']")),
-            CheckthatCorrectMessageIsDisplayed = $(By.xpath("//*[@id=\"maincontent\"]/div[1]/div/div/div"));
+            submitButton = $(By.xpath("//div[@class='row']")),
+            CheckthatCorrectMessageIsDisplayed = $("div.message-success.success.message");
 
     /** Page Methods **/
 
-    public static boolean CheckthatCorrectMessageIsDisplayed() {
-        reporter.info("Checking that correct message is displayed");
-        waitForElement(By.xpath("//*[@id=\"maincontent\"]/div[1]/div/div/div"));
-        if(CheckthatCorrectMessageIsDisplayed.isDisplayed()){
-          return true;
-      }
-        return false;
-    }
 
     public ContactUsPage populatesFields(UserEntity user){
         waitForPageToLoad();
@@ -84,5 +77,16 @@ public class ContactUsPage extends BasePage {
         reporter.info("Click on Submit button");
         submitButton.scrollIntoView(true).click();
         return this;
+    }
+
+    public static void CheckthatCorrectMessageIsDisplayed() {
+        reporter.info("Checking that correct message is displayed");
+        CheckthatCorrectMessageIsDisplayed.scrollIntoView(true);
+        CheckthatCorrectMessageIsDisplayed.shouldHave(text("Thank you for your message. It has been sent."));
+//        waitForElement(byText("Thank you for your message. It has been sent."));
+//        if(CheckthatCorrectMessageIsDisplayed.isDisplayed()){
+//            return true;
+//        }
+        //return false;
     }
 }

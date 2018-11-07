@@ -23,11 +23,13 @@
             <class name="smoke.general_test.Product_Filter_Test"/>
             <class name="smoke.general_test.Store_Locator_Test"/>
             <class name="smoke.general_test.Reviews_Test"/>
+            <class name="smoke.general_test.Contact_Us_Test"/>
 
             <class name="smoke.delete_test.Delete_Adjustable_Bases_From_Cart_Test"/>
             <class name="smoke.delete_test.Delete_Box_Spring_From_Cart_Test"/>
             <class name="smoke.delete_test.Delete_Mattress_From_Cart_Test"/>
             <class name="smoke.delete_test.Delete_Mattress_In_A_Box_From_Cart_Test"/>
+
         </classes>
     </test> <!-- test -->
     <test name="Full" parallel="none">

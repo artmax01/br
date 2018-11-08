@@ -40,7 +40,7 @@ public class AdminPage extends BasePage {
     public AdminPage doLogin(){
         reporter.info("Logging into admin panel");
         $("#username").sendKeys("auto.qa");
-        $("#login").sendKeys("Tomorrow101");
+        $("#login").sendKeys("Qwerty123");
         $(".action-login.action-primary").click();
         waitForPageToLoad();
 

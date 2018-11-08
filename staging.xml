@@ -30,6 +30,9 @@
             <class name="smoke.delete_test.Delete_Mattress_From_Cart_Test"/>
             <class name="smoke.delete_test.Delete_Mattress_In_A_Box_From_Cart_Test"/>
 
+            <class name="smoke.forms_test.Product_Registration_Test"/>
+            <class name="smoke.forms_test.Warranty_Claim_Test"/>
+
         </classes>
     </test> <!-- test -->
     <test name="Full" parallel="none">

@@ -66,7 +66,7 @@ public class MattressPlp extends BasePage{
     public static boolean AllPricesAreDisplayed(){
         reporter.info("Checking that all mattresses are displayed");
         if (getElements(By.cssSelector(".product-item.col-lg-4"))
-                .size() == 55){
+                .size() == 53){
             return true;
         }
         return false;
@@ -92,6 +92,7 @@ public class MattressPlp extends BasePage{
 
     public static void MovePriceSliderTo$800_999(){
        reporter.info("Moving mattress price slider to \"$800 - $999\"");
+       scrollIntoView(priceStep_800_999);
        mattressPriceSlider.dragAndDropTo(priceStep_800_999);
     }
 
@@ -111,6 +112,7 @@ public class MattressPlp extends BasePage{
 
     public static void MovePriceSliderTo$1000_1999(){
         reporter.info("Moving mattress price slider to \"$1000 - $1999\"");
+        scrollIntoView(priceStep_1000_1999);
         mattressPriceSlider.dragAndDropTo(priceStep_1000_1999);
     }
 
@@ -130,6 +132,7 @@ public class MattressPlp extends BasePage{
 
     public static void MovePriceSliderTo$2000_2999(){
         reporter.info("Moving mattress price slider to \"$2000 - $2999\"");
+        scrollIntoView(priceStep_2000_2999);
         mattressPriceSlider.dragAndDropTo(priceStep_2000_2999);
     }
 
@@ -149,6 +152,7 @@ public class MattressPlp extends BasePage{
 
     public static void MovePriceSliderTo$3000_or_more(){
         reporter.info("Moving mattress price slider to \"$3000 or More\"");
+        scrollIntoView(priceStep_3000_or_more);
         mattressPriceSlider.dragAndDropTo(priceStep_3000_or_more);
     }
 

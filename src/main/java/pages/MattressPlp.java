@@ -44,7 +44,8 @@ public class MattressPlp extends BasePage{
     clearSelectionsButton = $x(".//span[text()='Clear Selections']"),
     confirmSelectionRemoval = $(".action-primary.action-accept"),
 
-    product = $(".product-item-name");
+    product = $(".product-item-name"),
+    seeAllRewiewButton = $(".btn.btn-black-white.see-all-reviews");
 
 
     //* Page methods *//
@@ -312,8 +313,9 @@ public class MattressPlp extends BasePage{
 
     public boolean clickOnSeeAllReviewsButton(){
         reporter.info("Clicking on \"See All Reviews\" button");
-        $(".btn.btn-black-white.see-all-reviews").scrollIntoView(true)
-                .click();
+        scrollIntoView(seeAllRewiewButton).click();
+    //    $(".btn.btn-black-white.see-all-reviews").scrollIntoView(true)
+     //           .click();
         ElementsCollection reviews = $$(".bv-content-item.bv-content-top-review.bv-content-review");
         reviews.first().scrollIntoView(true);
         if (reviews.size() > 5){

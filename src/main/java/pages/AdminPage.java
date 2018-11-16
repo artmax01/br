@@ -13,6 +13,9 @@ public class AdminPage extends BasePage {
     private static AdminPage instance;
     public static AdminPage Instance = (instance != null) ? instance : new AdminPage();
 
+    public static String adminLogin = (FileIO.getConfigProperty("adminLogin"));
+    public static String adminPassword = (FileIO.getConfigProperty("adminPassword"));
+
     public AdminPage(){
         pageURL = FileIO.getConfigProperty("adminUrl");
         pageTitle = "Dashboard / Magento Admin | Tomorrow Sleep";
@@ -34,15 +37,13 @@ public class AdminPage extends BasePage {
     submitCancelationButton = $(".action-primary.action-accept"),
     successMessage = $(By.xpath(".//div[@data-ui-id='messages-message-success']"));
 
-    String adminLogin = FileIO.getConfigProperty("adminLogin"),
-    adminPass = FileIO.getConfigProperty("adminPass");
-
     /** Page Methods **/
 
     public AdminPage doLogin(){
         reporter.info("Logging into admin panel");
         $("#username").sendKeys(adminLogin);
-        $("#login").sendKeys(adminPass);
+        $("#login").sendKeys(adminPassword);
+
         $(".action-login.action-primary").click();
         waitForPageToLoad();
 

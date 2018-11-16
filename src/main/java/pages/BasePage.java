@@ -24,6 +24,7 @@ public class BasePage {
     public static ThreadLocal<WebDriver> driver = new ThreadLocal<WebDriver>();
 
     public final static String BASE_URL = (FileIO.getConfigProperty("baseUrl"));
+    public final static String ADMIN_URL = (FileIO.getConfigProperty("adminUrl"));
 
     public static String pageURL = "";
     public static String pageTitle = "";
@@ -82,7 +83,7 @@ public class BasePage {
 
     public static AdminPage openAdminPage(){
         reporter.info("Opening Admin page");
-        Selenide.open("https://bettersleep:stg-tsleep-@45@staging.tomorrowsleep.com/office45w45");
+        Selenide.open(ADMIN_URL);
         return AdminPage.Instance;
     }
 

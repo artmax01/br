@@ -34,13 +34,15 @@ public class AdminPage extends BasePage {
     submitCancelationButton = $(".action-primary.action-accept"),
     successMessage = $(By.xpath(".//div[@data-ui-id='messages-message-success']"));
 
+    String adminLogin = FileIO.getConfigProperty("adminLogin"),
+    adminPass = FileIO.getConfigProperty("adminPass");
 
     /** Page Methods **/
 
     public AdminPage doLogin(){
         reporter.info("Logging into admin panel");
-        $("#username").sendKeys("auto.qa");
-        $("#login").sendKeys("Qwerty123");
+        $("#username").sendKeys(adminLogin);
+        $("#login").sendKeys(adminPass);
         $(".action-login.action-primary").click();
         waitForPageToLoad();
 

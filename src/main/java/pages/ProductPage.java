@@ -19,6 +19,8 @@ public class ProductPage extends BasePage{
     selectedSecondOption = $x("//*[@class='swatch-opt']/div[2]//div[@class='swatch-option text selected']"),
     klarnaBlock = $(".klarna-placement"),
     productPriceText = $x("//*[@class='product-info-price']/div/span/span/span"),
+    addToCart = $("#product-addtocart-button"),
+    updateCart = $("#product-updatecart-button"),
 
     crossSellModal = $(".xs-modal__sold"),
     xsCloseButton = $$x(".//*[@class='action-close']").get(1),
@@ -59,8 +61,7 @@ public class ProductPage extends BasePage{
     public static CartPage clickAddToCart() {
         reporter.info("Clicking on \"Add to cart\" button");
         waitForPageToLoad();
-        getElement(By.cssSelector("#product-addtocart-button"))
-                .click();
+        addToCart.click();
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {
@@ -76,16 +77,14 @@ public class ProductPage extends BasePage{
     public static CartPage clickAddToCartDontClosePopup() {
         reporter.info("Clicking on \"Add to cart\" button");
         waitForPageToLoad();
-        getElement(By.cssSelector("#product-addtocart-button"))
-                .click();
+        addToCart.click();
         return CartPage.Instance;
     }
 
     public static CartPage clickUpdateProduct(){
         reporter.info("Clicking on \"Update Product\" button");
         waitForPageToLoad();
-        getElement(By.cssSelector("#product-updatecart-button"))
-                .click();
+        updateCart.click();
         return CartPage.Instance;
     }
 

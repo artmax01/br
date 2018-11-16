@@ -20,8 +20,12 @@ public class FaqPage extends BasePage {
     ourMattresses = $(By.xpath(".//li[@data-target='#collapse-0']")),
     returnsAndWarranty = $(By.xpath(".//li[@data-target='#collapse-1']")),
     purchasing = $(By.xpath(".//li[@data-target='#collapse-2']")),
-    shippingAndDelivery = $(By.xpath(".//li[@data-target='#collapse-3']"));
+    shippingAndDelivery = $(By.xpath(".//li[@data-target='#collapse-3']")),
 
+    ourMattressesContent = $(By.xpath(".//div[contains(text(), 'Why should I purchase Beautyrest over another brand?')]")),
+    returnsAndWarrantyContent = $(By.xpath(".//div[contains(text(), 'What is your return policy?')]")),
+    purchasingContent = $(By.xpath(".//div[contains(text(), 'Are there any restriction on your promotions?')]")),
+    shippingAndDeliveryContent = $(By.xpath(".//div[contains(text(), 'How much does shipping cost?')]"));
 
     /** Page Methods **/
 
@@ -39,11 +43,11 @@ public class FaqPage extends BasePage {
         ourMattresses.scrollIntoView(true)
                 .click();
         waitForPageToLoad();
-        getElement(By.xpath(".//div[contains(text(), 'Why should I purchase Beautyrest over another brand?')]")).shouldBe(Condition.visible);
+        ourMattressesContent.shouldBe(Condition.visible);
         ourMattresses.scrollIntoView(true)
                 .click();
         waitForPageToLoad();
-        getElement(By.xpath(".//div[contains(text(), 'Why should I purchase Beautyrest over another brand?')]")).shouldNotBe(Condition.visible);
+        ourMattressesContent.shouldNotBe(Condition.visible);
         reporter.info("Collapsing Our Mattresses");
     }
 
@@ -52,11 +56,11 @@ public class FaqPage extends BasePage {
         returnsAndWarranty.scrollIntoView(true)
                 .click();
         waitForPageToLoad();
-        getElement(By.xpath(".//div[contains(text(), 'What is your return policy?')]")).shouldBe(Condition.visible);
+        returnsAndWarrantyContent.shouldBe(Condition.visible);
         returnsAndWarranty.scrollIntoView(true)
                 .click();
         waitForPageToLoad();
-        getElement(By.xpath(".//div[contains(text(), 'What is your return policy?')]")).shouldNotBe(Condition.visible);
+        returnsAndWarrantyContent.shouldNotBe(Condition.visible);
         reporter.info("Collapsing Returns & Warranty");
     }
 
@@ -65,11 +69,11 @@ public class FaqPage extends BasePage {
         purchasing.scrollIntoView(true)
                 .click();
         waitForPageToLoad();
-        getElement(By.xpath(".//div[contains(text(), 'Are there any restriction on your promotions?')]")).shouldBe(Condition.visible);
+        purchasingContent.shouldBe(Condition.visible);
         purchasing.scrollIntoView(true)
                 .click();
         waitForPageToLoad();
-        getElement(By.xpath(".//div[contains(text(), 'Are there any restriction on your promotions?')]")).shouldNotBe(Condition.visible);
+        purchasingContent.shouldNotBe(Condition.visible);
         reporter.info("Collapsing Purchasing");
     }
 
@@ -78,11 +82,11 @@ public class FaqPage extends BasePage {
         shippingAndDelivery.scrollIntoView(true)
                 .click();
         waitForPageToLoad();
-        getElement(By.xpath(".//div[contains(text(), 'How much does shipping cost?')]")).shouldBe(Condition.visible);
+        shippingAndDeliveryContent.shouldBe(Condition.visible);
         shippingAndDelivery.scrollIntoView(true)
                 .click();
         waitForPageToLoad();
-        getElement(By.xpath(".//div[contains(text(), 'How much does shipping cost?')]")).shouldNotBe(Condition.visible);
+        shippingAndDeliveryContent.shouldNotBe(Condition.visible);
         reporter.info("Collapsing Shipping & Delivery");
     }
 }

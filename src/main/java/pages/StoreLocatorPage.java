@@ -16,7 +16,7 @@ public class StoreLocatorPage extends BasePage{
 
     public StoreLocatorPage(){
         pageURL = "/locator/";
-        pageTitle = "Find a Mattress Store Near You | Beautyrest";
+        pageTitle = "Find a Store";
     }
 
     /** UI Mapping **/

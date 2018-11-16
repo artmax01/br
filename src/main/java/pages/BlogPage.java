@@ -6,7 +6,7 @@ public class BlogPage extends BasePage{
     public static BlogPage Instance = (instance != null) ? instance : new BlogPage();
 
     public BlogPage(){
-        pageURL = "https://www.beautyrest.com/Blog";
-        pageTitle = "Under The Covers Blog | Mattress Research | Beautyrest";
+        pageURL = "/blog";
+        pageTitle = "Beautyrest Blog – Know how to fight sleep deprivation? Beautyrest does";
     }
 }

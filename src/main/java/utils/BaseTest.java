@@ -23,9 +23,6 @@ public class BaseTest{
         reporter = ReporterManager.Instance;
         reporter.startReporting(method, data);
 
-        //set reporter to product sync
-        ProductSync.reporter = reporter;
-
         //init threadlocal driver
         try {
             Configuration.timeout = 40000;
